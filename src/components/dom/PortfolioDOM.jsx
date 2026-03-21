@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { projects } from '../../data/projects';
 import { useStore } from '../../store/useStore';
@@ -129,22 +131,22 @@ export default function PortfolioDOM() {
         );
       })}
 
-      {/* Page 7: Standard sequence stack locks cleanly preventing trailing drifts */}
-      <div className="h-screen flex flex-col items-center justify-center w-full px-8 pointer-events-auto relative">
-        <h2 className="font-mono text-accent tracking-[0.5em] uppercase mb-12 text-sm border-b border-gray-800 pb-4 font-bold">Initiate Uplink</h2>
+      {/* Page 7: Contact section — overflow-y-auto on mobile prevents content clipping */}
+      <div className="h-screen flex flex-col items-center justify-start md:justify-center w-full px-4 md:px-8 pointer-events-auto relative overflow-y-auto py-8 md:py-0">
+        <h2 className="font-mono text-accent tracking-[0.5em] uppercase mb-6 md:mb-12 text-xs md:text-sm border-b border-gray-800 pb-3 md:pb-4 font-bold mt-4 md:mt-0">Initiate Uplink</h2>
         
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 w-full max-w-6xl items-center lg:items-start justify-center">
+        <div className="flex flex-col lg:flex-row gap-6 md:gap-16 lg:gap-24 w-full max-w-6xl items-center lg:items-start justify-center">
             {/* Left: Headline & Links */}
-            <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left pt-6">
-                <div className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-12 leading-tight">
+            <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+                <div className="font-serif text-2xl md:text-5xl lg:text-6xl text-white mb-6 md:mb-12 leading-tight">
                   Ready to formulate high performance infrastructure?
                 </div>
-                <div className="flex flex-col gap-6 font-mono tracking-widest text-gray-400 text-xs font-bold uppercase w-full max-w-sm">
-                  <a href="https://linkedin.com/in/vaibhavpatel-dev/" target="_blank" rel="noreferrer" className="group border border-gray-800 hover:border-accent bg-[#040812] hover:bg-accent px-8 py-6 transition-colors hover:text-black flex items-center gap-6 shadow-2xl cursor-none">
-                    <span className="text-accent group-hover:text-black text-xl leading-none">&gt;</span> LINKEDIN_NODE
+                <div className="flex flex-row md:flex-col gap-3 md:gap-6 font-mono tracking-widest text-gray-400 text-[9px] md:text-xs font-bold uppercase w-full max-w-sm">
+                  <a href="https://linkedin.com/in/vaibhavpatel-dev/" target="_blank" rel="noreferrer" className="group border border-gray-800 hover:border-accent bg-[#040812] hover:bg-accent px-4 md:px-8 py-3 md:py-6 transition-colors hover:text-black flex items-center gap-3 md:gap-6 shadow-2xl cursor-none flex-1 md:flex-none">
+                    <span className="text-accent group-hover:text-black text-lg md:text-xl leading-none">&gt;</span> LINKEDIN
                   </a>
-                  <a href="https://github.com/VortexDevX" target="_blank" rel="noreferrer" className="group border border-gray-800 hover:border-accent bg-[#040812] hover:bg-accent px-8 py-6 transition-colors hover:text-black flex items-center gap-6 shadow-2xl cursor-none">
-                    <span className="text-accent group-hover:text-black text-xl leading-none">&gt;</span> GITHUB_NODE
+                  <a href="https://github.com/VortexDevX" target="_blank" rel="noreferrer" className="group border border-gray-800 hover:border-accent bg-[#040812] hover:bg-accent px-4 md:px-8 py-3 md:py-6 transition-colors hover:text-black flex items-center gap-3 md:gap-6 shadow-2xl cursor-none flex-1 md:flex-none">
+                    <span className="text-accent group-hover:text-black text-lg md:text-xl leading-none">&gt;</span> GITHUB
                   </a>
                 </div>
             </div>
@@ -154,27 +156,27 @@ export default function PortfolioDOM() {
                 action="mailto:patelvaibhav020406@gmail.com" 
                 method="POST" 
                 encType="text/plain"
-                className="flex-1 w-full flex flex-col gap-8 font-mono text-xs tracking-widest uppercase bg-[#020408] border border-gray-800 p-8 md:p-12 shadow-2xl"
+                className="flex-1 w-full flex flex-col gap-4 md:gap-8 font-mono text-xs tracking-widest uppercase bg-[#020408] border border-gray-800 p-5 md:p-12 shadow-2xl"
             >
-                <div className="flex flex-col gap-3">
-                    <label className="text-gray-500 font-bold">IDENTIFIER_</label>
-                    <input type="text" name="name" required className="bg-[#030610] border border-gray-800 focus:border-accent outline-none text-white px-6 py-4 transition-colors cursor-none" placeholder="YOUR NAME" />
+                <div className="flex flex-col gap-2 md:gap-3">
+                    <label className="text-gray-500 font-bold text-[9px] md:text-xs">IDENTIFIER_</label>
+                    <input type="text" name="name" required className="bg-[#030610] border border-gray-800 focus:border-accent outline-none text-white px-4 md:px-6 py-3 md:py-4 transition-colors cursor-none text-[10px] md:text-xs" placeholder="YOUR NAME" />
                 </div>
-                <div className="flex flex-col gap-3">
-                    <label className="text-gray-500 font-bold">RETURN_NODE_</label>
-                    <input type="email" name="email" required className="bg-[#030610] border border-gray-800 focus:border-accent outline-none text-white px-6 py-4 transition-colors cursor-none" placeholder="YOUR EMAIL" />
+                <div className="flex flex-col gap-2 md:gap-3">
+                    <label className="text-gray-500 font-bold text-[9px] md:text-xs">RETURN_NODE_</label>
+                    <input type="email" name="email" required className="bg-[#030610] border border-gray-800 focus:border-accent outline-none text-white px-4 md:px-6 py-3 md:py-4 transition-colors cursor-none text-[10px] md:text-xs" placeholder="YOUR EMAIL" />
                 </div>
-                <div className="flex flex-col gap-3">
-                    <label className="text-gray-500 font-bold">TRANSMISSION_PAYLOAD_</label>
-                    <textarea name="message" required rows="4" className="bg-[#030610] border border-gray-800 focus:border-accent outline-none text-white px-6 py-4 transition-colors resize-none cursor-none" placeholder="YOUR MESSAGE"></textarea>
+                <div className="flex flex-col gap-2 md:gap-3">
+                    <label className="text-gray-500 font-bold text-[9px] md:text-xs">TRANSMISSION_PAYLOAD_</label>
+                    <textarea name="message" required rows="3" className="bg-[#030610] border border-gray-800 focus:border-accent outline-none text-white px-4 md:px-6 py-3 md:py-4 transition-colors resize-none cursor-none text-[10px] md:text-xs" placeholder="YOUR MESSAGE"></textarea>
                 </div>
-                <button type="submit" className="border border-accent bg-accent/10 hover:bg-accent hover:text-black text-accent px-8 py-5 mt-2 transition-colors font-bold flex items-center justify-center gap-4 cursor-none group">
-                    <span className="text-xl leading-none group-hover:translate-x-2 transition-transform">&gt;</span> DEPLOY_MESSAGE
+                <button type="submit" className="border border-accent bg-accent/10 hover:bg-accent hover:text-black text-accent px-6 md:px-8 py-3 md:py-5 transition-colors font-bold flex items-center justify-center gap-4 cursor-none group text-[10px] md:text-xs">
+                    <span className="text-lg md:text-xl leading-none group-hover:translate-x-2 transition-transform">&gt;</span> DEPLOY_MESSAGE
                 </button>
             </form>
         </div>
 
-        <div className="absolute bottom-12 font-mono text-[10px] text-gray-600 tracking-[0.4em] uppercase font-bold">
+        <div className="py-6 md:py-0 md:absolute md:bottom-12 font-mono text-[10px] text-gray-600 tracking-[0.4em] uppercase font-bold">
           SYSTEM_TERMINATION // EOF
         </div>
       </div>

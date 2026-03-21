@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import CustomCursor from './components/dom/CustomCursor.jsx';
 import Scene from './components/canvas/Scene.jsx';

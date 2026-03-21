@@ -18,6 +18,7 @@ vendor/
 dist/
 build/
 out/
+.next/
 
 # Cache
 .cache/
@@ -51,4 +52,4 @@ venv/
 *.bak
 *.old
 
-docs
+docs/
