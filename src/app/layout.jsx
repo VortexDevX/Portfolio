@@ -4,20 +4,20 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
 
 export const metadata = {
-  title: 'Vaibhav Patel | Full-Stack Engineer',
+  title: 'Vaibhav Patel | Full-Stack Web Developer',
   description: 'High-performance Full-Stack Developer and Computer Engineering student specializing in secure realtime systems, scalable architecture, and production-grade web applications.',
   keywords: ['Full Stack Developer', 'React', 'Next.js', 'Three.js', 'Node.js', 'Portfolio', 'Vaibhav Patel', 'Computer Engineering'],
   authors: [{ name: 'Vaibhav Patel' }],
   creator: 'Vaibhav Patel',
   openGraph: {
-    title: 'Vaibhav Patel | Full-Stack Software Engineer',
+    title: 'Vaibhav Patel | Full-Stack Web Developer',
     description: 'Explore production-grade full-stack architectures and deep systems engineering.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Vaibhav Patel | Full-Stack Engineer',
+    title: 'Vaibhav Patel | Full-Stack Web Developer',
     description: 'High-performance Full-Stack Developer building secure, scalable web applications.',
   },
   robots: {
