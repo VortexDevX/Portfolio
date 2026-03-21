@@ -8,13 +8,6 @@ A high-performance, WebGL-accelerated 3D developer portfolio designed with a bru
 - **Tailwind CSS** — Strict utility-first brutalist styling matrix and complex global responsive viewport scaling.
 - **Zustand** — Lightweight global state management synchronizing strict DOM overlays seamlessly with 3D canvas coordinates.
 
-### EXECUTION_PROTOCOLS
-Clone the repository and initialize the local development server:
-```bash
-npm install
-npm run dev
-```
-
 ### SYSTEM_IDENTITY
 **[ Vaibhav Patel ]**
 Full-Stack Developer focusing on high-performance infrastructure, real-time secure systems, and highly scalable backend architectures.
