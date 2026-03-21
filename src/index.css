@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  background-color: #00e5ff;
+  color: #000000;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #030712;
+}
+
+* {
+  cursor: none !important;
+}
