@@ -28,8 +28,6 @@ export default function CustomCursor() {
                 <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_10px_white]" />
             </div>
         ) : isHovering ? (
-            // User requested to remove the "big ass initialize button". 
-            // Scaled dynamically into a hyper-minimal glowing interaction ring retaining the tracking dot gracefully.
             <div className="w-8 h-8 rounded-full border border-accent flex flex-col items-center justify-center bg-accent/20 transition-all duration-300 shadow-[0_0_20px_rgba(0,229,255,0.5)]">
                 <div className="w-2 h-2 bg-white rounded-full" />
             </div>
