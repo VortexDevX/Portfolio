@@ -225,7 +225,7 @@ function ProjectCard({ project, index }) {
         flashing ? { animation: "decryptFlash 0.4s ease forwards" } : undefined
       }
     >
-      <div className="relative scanlines w-full aspect-video bg-black overflow-hidden">
+      <div className="relative w-full aspect-video bg-black overflow-hidden">
         <img
           src={project.frontendTexture}
           alt={project.title}

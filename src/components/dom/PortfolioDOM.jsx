@@ -6,13 +6,13 @@ import { useStore } from "../../store/useStore";
 
 const HeroSection = () => (
   <div className="h-screen flex flex-col items-center justify-center w-full relative">
-    <div className="font-serif text-[12vw] md:text-[9vw] lg:text-[8vw] text-white tracking-tighter leading-none drop-shadow-[0_0_30px_rgba(0,229,255,0.2)]">
+    <div className="font-serif text-[9vw] lg:text-[8vw] text-white tracking-tighter leading-none drop-shadow-[0_0_30px_rgba(0,229,255,0.2)]">
       VAIBHAV PATEL
     </div>
     <div className="font-mono text-accent tracking-[0.4em] uppercase mt-8 text-sm md:text-lg font-bold">
       Full Stack Web Developer
     </div>
-    <div className="absolute bottom-16 font-mono text-gray-500 text-xs tracking-[0.5em] animate-pulse border-b border-gray-800 pb-2 uppercase text-shadow">
+    <div className="absolute bottom-16 font-mono text-gray-500 text-xs tracking-[0.5em] animate-pulse border-b border-gray-800 pb-2 uppercase">
       [ SCROLL SYSTEM INITIATED ]
     </div>
   </div>
@@ -56,54 +56,32 @@ const AboutSection = () => (
           Core Competencies
         </h2>
         <div className="space-y-6 font-mono text-[10px] md:text-xs leading-relaxed">
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <span className="text-gray-500 uppercase tracking-widest col-span-1 border-r border-gray-800">
-              Languages
-            </span>
-            <span className="text-gray-300 col-span-2">
-              JavaScript (ES6+), TypeScript, Python
-            </span>
-          </div>
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <span className="text-gray-500 uppercase tracking-widest col-span-1 border-r border-gray-800">
-              Frontend
-            </span>
-            <span className="text-gray-300 col-span-2">
-              React, Next.js, HTML5, CSS3, PWA
-            </span>
-          </div>
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <span className="text-gray-500 uppercase tracking-widest col-span-1 border-r border-gray-800">
-              Backend
-            </span>
-            <span className="text-gray-300 col-span-2">
-              Node.js, Express, WebSockets, APIs
-            </span>
-          </div>
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <span className="text-gray-500 uppercase tracking-widest col-span-1 border-r border-gray-800">
-              Databases
-            </span>
-            <span className="text-gray-300 col-span-2">
-              MongoDB, PostgreSQL, IndexedDB
-            </span>
-          </div>
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <span className="text-gray-500 uppercase tracking-widest col-span-1 border-r border-gray-800">
-              Security
-            </span>
-            <span className="text-accent font-bold col-span-2 tracking-widest">
-              JWT, OAuth2, 2FA, RBAC
-            </span>
-          </div>
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <span className="text-gray-500 uppercase tracking-widest col-span-1 border-r border-gray-800">
-              Dev_Tools
-            </span>
-            <span className="text-gray-300 col-span-2">
-              Git, Docker, AWS S3, CI/CD
-            </span>
-          </div>
+          {[
+            {
+              label: "Languages",
+              value: "JavaScript (ES6+), TypeScript, Python",
+            },
+            { label: "Frontend", value: "React, Next.js, HTML5, CSS3, PWA" },
+            { label: "Backend", value: "Node.js, Express, WebSockets, APIs" },
+            { label: "Databases", value: "MongoDB, PostgreSQL, IndexedDB" },
+            {
+              label: "Security",
+              value: "JWT, OAuth2, 2FA, RBAC",
+              accent: true,
+            },
+            { label: "Dev_Tools", value: "Git, Docker, AWS S3, CI/CD" },
+          ].map(({ label, value, accent }) => (
+            <div key={label} className="grid grid-cols-3 gap-6 items-start">
+              <span className="text-gray-500 uppercase tracking-widest col-span-1 border-r border-gray-800">
+                {label}
+              </span>
+              <span
+                className={`col-span-2 ${accent ? "text-accent font-bold tracking-widest" : "text-gray-300"}`}
+              >
+                {value}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -210,6 +188,7 @@ function ContactForm() {
 
 export default function PortfolioDOM() {
   const activeId = useStore((state) => state.activeMonolithId);
+  const hoveredMonolithId = useStore((state) => state.hoveredMonolithId);
   const setActiveMonolithId = useStore((state) => state.setActiveMonolithId);
   const setHoveredMonolithId = useStore((state) => state.setHoveredMonolithId);
 
@@ -220,16 +199,18 @@ export default function PortfolioDOM() {
       <HeroSection />
       <AboutSection />
 
+      {/* Projects */}
       {projects.map((project, idx) => {
         const isLeft = idx % 2 === 0;
+        const isHovered = hoveredMonolithId === project.id;
 
         return (
           <div
             key={project.id}
-            className="h-screen w-full relative pointer-events-none flex flex-col justify-center max-w-[1600px] mx-auto"
+            className="h-screen w-full relative pointer-events-none"
           >
             {idx === 0 && (
-              <div className="absolute top-10 left-1/2 -translate-x-1/2 font-mono text-accent text-[10px] md:text-xs tracking-[0.5em] uppercase opacity-80 font-bold border-b border-accent/20 pb-2">
+              <div className="absolute top-10 left-1/2 -translate-x-1/2 font-mono text-accent text-xs tracking-[0.5em] uppercase opacity-80 font-bold border-b border-accent/20 pb-2">
                 [ FIELD_PROJECTS_ARRAY ]
               </div>
             )}
@@ -238,36 +219,49 @@ export default function PortfolioDOM() {
               onClick={() => setActiveMonolithId(project.id)}
               onMouseEnter={() => setHoveredMonolithId(project.id)}
               onMouseLeave={() => setHoveredMonolithId(null)}
-              className={`absolute bottom-[10vh] md:bottom-auto md:top-1/2 md:-translate-y-1/2 flex flex-col pointer-events-auto group cursor-none transition-all duration-300 w-full md:w-[50vw] px-6 md:px-[6vw] items-center text-center md:items-start ${isLeft ? "md:right-0 md:text-left" : "md:left-0 md:text-left lg:text-right lg:items-end"}`}
+              className={`absolute top-1/2 -translate-y-1/2 pointer-events-auto group cursor-none px-[5vw] ${
+                isLeft ? "right-0 w-[48vw]" : "left-0 w-[48vw]"
+              }`}
             >
-              <div
-                className={`flex flex-col md:flex-row items-center md:items-start font-mono text-accent text-[10px] md:text-xs lg:text-sm tracking-[0.4em] uppercase mb-4 md:mb-6 opacity-100 font-bold ${isLeft ? "" : "lg:justify-end"}`}
-              >
-                <span className="text-gray-600 mb-2 md:mb-0 md:mr-4 whitespace-nowrap pt-0 md:pt-[2px]">
-                  PROJ_0{idx + 1} //
-                </span>
-                <span
-                  className={`leading-relaxed text-center ${isLeft ? "md:text-left" : "md:text-left lg:text-right"}`}
-                >
-                  {project.backendData.sys_arch.replace(/\/\//g, " • ")}
-                </span>
+              {/* Top rule with index */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-700 group-hover:bg-accent group-hover:shadow-[0_0_12px_rgba(0,229,255,0.8)] transition-all duration-300" />
+                  <span className="font-mono text-xs text-gray-600 tracking-widest font-bold">
+                    0{idx + 1}
+                  </span>
+                </div>
+                <div className="h-px flex-1 bg-gray-800 group-hover:bg-accent/30 transition-colors duration-500" />
               </div>
 
-              <h2 className="font-serif text-[13vw] leading-[1.05] md:text-6xl lg:text-7xl xl:text-8xl w-full text-white mb-4 tracking-tighter drop-shadow-2xl capitalize transition-all duration-500 group-hover:text-accent group-hover:tracking-wide group-hover:drop-shadow-[0_0_30px_rgba(0,229,255,0.3)]">
+              {/* Title — consistent size, wrapping is fine */}
+              <h2 className="font-serif text-[clamp(2.5rem,5vw,5rem)] leading-[1.1] text-white tracking-tighter capitalize mb-4 transition-all duration-500 group-hover:text-accent group-hover:drop-shadow-[0_0_40px_rgba(0,229,255,0.4)]">
                 {project.title.replace(/_/g, " ")}
               </h2>
 
-              <div
-                className={`font-mono text-[9px] md:text-xs text-gray-500 tracking-[0.4em] uppercase mt-2 md:mt-4 animate-pulse transition-all duration-300 group-hover:text-accent font-bold ${isLeft ? "md:self-start" : "md:self-start lg:self-end"}`}
-              >
-                [ CLICK TO EXPAND INTELLIGENCE ]
+              {/* Tech stack */}
+              <div className="font-mono text-[11px] text-gray-500 tracking-wider uppercase mb-3 group-hover:text-accent/70 transition-colors duration-300">
+                {project.backendData.sys_arch.replace(/\/\//g, " • ")}
+              </div>
+
+              {/* Outcome — always visible, muted */}
+              <p className="font-mono text-[11px] text-gray-600 tracking-wide leading-relaxed max-w-md">
+                {project.backendData.outcome.replace(/_/g, " ")}
+              </p>
+
+              {/* Bottom rule with CTA */}
+              <div className="flex items-center gap-4 mt-8">
+                <div className="h-px flex-1 bg-gray-800 group-hover:bg-accent/30 transition-colors duration-500" />
+                <span className="font-mono text-[10px] text-gray-600 tracking-[0.3em] uppercase font-bold group-hover:text-accent transition-colors duration-300 whitespace-nowrap">
+                  EXPAND_INTEL
+                </span>
               </div>
             </div>
           </div>
         );
       })}
 
-      {/* Contact Section */}
+      {/* Contact */}
       <div className="h-screen flex flex-col items-center justify-center w-full px-4 md:px-8 pointer-events-auto relative">
         <h2 className="font-mono text-accent tracking-[0.5em] uppercase mb-6 md:mb-12 text-xs md:text-sm border-b border-gray-800 pb-3 md:pb-4 font-bold">
           Initiate Uplink
@@ -303,7 +297,6 @@ export default function PortfolioDOM() {
               </a>
             </div>
           </div>
-
           <ContactForm />
         </div>
 
