@@ -2,24 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── CSS custom properties ───────────────────────────────────────────────────
+   Single source of truth for raw values.
+   Tailwind tokens reference these via var() in components where needed.
+   Keep in sync with tailwind.config.js color definitions.
+──────────────────────────────────────────────────────────────────────────── */
+:root {
+  --color-void:    #030712;
+  --color-pit:     #020408;
+  --color-surface: #040812;
+  --color-edge:    #0f172a;
+  --color-accent:  #00e5ff;
+  --color-dim:     #1e4a52;
+}
+
+/* ── Selection ───────────────────────────────────────────────────────────── */
 ::selection {
-  background-color: #00e5ff;
+  background-color: var(--color-accent);
   color: #000000;
 }
 
+/* ── Base reset ──────────────────────────────────────────────────────────── */
 body {
   margin: 0;
   overflow-x: hidden;
-  background-color: #030712;
+  background-color: var(--color-void);
 }
 
+/* ── Custom cursor suppression (pointer devices only) ────────────────────── */
 @media (pointer: fine) {
   * {
     cursor: none !important;
   }
 }
 
-/* Mobile boot animation */
+/* ── Animations ──────────────────────────────────────────────────────────── */
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
@@ -32,18 +49,14 @@ body {
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-/* Mobile decrypt flash */
+/* Mobile project card decrypt flash */
 @keyframes decryptFlash {
   0% {
-    border-color: #00e5ff;
+    border-color: var(--color-accent);
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
   }
   50% {

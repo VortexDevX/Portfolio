@@ -5,6 +5,10 @@ import { Canvas } from "@react-three/fiber";
 import { ScrollControls, Scroll, Sparkles } from "@react-three/drei";
 import Portfolio3D from "./Portfolio3D";
 import PortfolioDOM from "../dom/PortfolioDOM";
+import ScrollHUDCanvas from "../dom/ScrollHUDCanvas";
+import { projects } from "../../data/projects";
+
+const SCROLL_PAGES = 1 + 1 + projects.length + 1;
 
 export default function Scene() {
   return (
@@ -17,14 +21,8 @@ export default function Scene() {
       camera={{ position: [0, 0, 10], fov: 50 }}
       dpr={[1, 2]}
     >
-      {/* Strict deep abyssal cyan background */}
       <color attach="background" args={["#030712"]} />
 
-      {/* Massive clear lighting setup ensures Screenshots render with perfect web color accuracy */}
-      <ambientLight intensity={2} color="#ffffff" />
-      <directionalLight position={[5, 10, 5]} intensity={1.5} color="#ffffff" />
-
-      {/* Subtle particle engine layered strictly into the void */}
       <Sparkles
         count={800}
         scale={40}
@@ -34,17 +32,18 @@ export default function Scene() {
         color="#00e5ff"
       />
 
-      <ScrollControls pages={8} damping={0.25} distance={1}>
+      <ScrollControls pages={SCROLL_PAGES} damping={0.25} distance={1}>
         <Suspense fallback={null}>
-          {/* Scroll block for 3D Renders */}
           <Scroll>
             <Portfolio3D />
           </Scroll>
 
-          {/* Scroll block for cleanly positioned standard DOM HTML */}
           <Scroll html style={{ width: "100%", height: "100%" }}>
             <PortfolioDOM />
           </Scroll>
+
+          {/* Canvas-context reader — writes scroll data to DOM refs via useFrame */}
+          <ScrollHUDCanvas />
         </Suspense>
       </ScrollControls>
     </Canvas>
