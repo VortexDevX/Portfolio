@@ -22,6 +22,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://vortex.mvlab.cloud"),
   title: "Vaibhav Patel | Full-Stack Web Developer",
   description:
     "High-performance Full-Stack Developer and Computer Engineering student specializing in secure realtime systems, scalable architecture, and production-grade web applications.",
