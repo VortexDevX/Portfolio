@@ -28,10 +28,10 @@ const HeroSection = () => (
       VAIBHAV PATEL
     </div>
     <div className="font-mono text-gray-400 tracking-[0.4em] uppercase mt-8 text-sm md:text-base font-bold">
-      Full Stack Web Developer
+      FULL-STACK • SECURITY • REALTIME_SYSTEMS
     </div>
     <div className="absolute bottom-16 font-mono text-gray-600 text-[10px] tracking-[0.5em] animate-pulse border-b border-gray-800 pb-2 uppercase">
-      [ SCROLL TO NAVIGATE ]
+      SCROLL_TO_CONTINUE
     </div>
   </div>
 );
@@ -52,26 +52,26 @@ function AboutSection() {
         <div className="lg:col-span-7 space-y-12">
           <div>
             <h2 className="font-mono text-accent tracking-[0.4em] uppercase mb-6 text-[10px] border-b border-gray-800 pb-2 inline-block font-bold">
-              System Identity
+              SYSTEM_PROFILE
             </h2>
             <p className="font-serif text-2xl md:text-3xl text-gray-300 leading-relaxed text-justify">
-              Full-Stack Developer and 3rd-year Computer Engineering student
-              building production-grade web applications across frontend and
-              backend. Strong focus on security, realtime systems, and scalable
-              architecture. Experience in owning end-to-end features from design
-              to deployment. Ready to contribute meaningful engineering impact
-              from day one.
+              Full-Stack Developer and Computer Engineering student focused on
+              building secure, scalable, and real-time web systems. Experienced
+              in shipping end-to-end products across frontend, backend,
+              databases, and deployment infrastructure. Strong interest in
+              security engineering, immersive interfaces, and high-performance
+              architecture.
             </p>
           </div>
           <div>
             <h2 className="font-mono text-accent tracking-[0.4em] uppercase mb-6 text-[10px] border-b border-gray-800 pb-2 inline-block font-bold">
-              Education Node
+              ACADEMIC_RECORD
             </h2>
             <div className="text-white font-serif text-xl md:text-2xl mb-2 tracking-wide">
               Bachelor of Engineering (Computer Engineering)
             </div>
             <div className="font-mono text-gray-400 text-xs md:text-sm tracking-widest uppercase">
-              Ahmedabad Institute of Technology, Ahmedabad
+              Ahmedabad Institute of Technology, Gota, Ahmedabad
             </div>
             <div className="font-mono text-gray-500 font-bold text-[10px] mt-3 uppercase tracking-[0.4em]">
               Expected 2027
@@ -139,7 +139,7 @@ function ContactForm() {
       </div>
       <div className="flex flex-col gap-2 md:gap-3">
         <label className="text-gray-500 font-bold text-[9px] md:text-[10px]">
-          RETURN_NODE_
+          REPLY_CHANNEL_
         </label>
         <input
           type="email"
@@ -289,7 +289,7 @@ export default function PortfolioDOM() {
         <div className="flex flex-col lg:flex-row gap-6 md:gap-16 lg:gap-24 w-full max-w-6xl items-center lg:items-start justify-center">
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
             <div className="font-serif text-2xl md:text-5xl lg:text-6xl text-white mb-6 md:mb-12 leading-tight">
-              Ready to formulate high&#8209;performance infrastructure?
+              Building systems that perform under pressure.
             </div>
 
             {/* LinkedIn, GitHub, Resume — grouped as equal external links */}
