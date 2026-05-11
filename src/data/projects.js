@@ -2,91 +2,111 @@ export const projects = [
   {
     id: 1,
     title: "AUTOSECURE",
-    frontendTexture: "/texture/AUTOSECURE.webp",
+    frontendTexture: "/texture/autosecure.webp",
     backendData: {
-      sys_arch: "Electron // Next.js // Express // TypeScript",
-      db_matrix: "MongoDB // AWS_S3",
-      deploy_node: "Local // Electron_Desktop // Node_Server",
-      outcome: "CROSS_PLATFORM SECURITY_COMPLIANCE_DESKTOP_SUITE",
-      description: "AutoSecure is a full-stack automobile insurance policy management platform with desktop and web surfaces. It handles the complete policy lifecycle — creation, auditing, analytics, and role-based access — with enterprise-grade auth. Solves the operational complexity of insurance workflows through a unified Electron + web delivery model.",
+      sys_arch: "Next.js 16 // Express 5 // TypeScript",
+      db_matrix: "MongoDB // Mongoose // S3/R2 // Brevo",
+      deploy_node: "Node.js // Local_or_Server",
+      outcome: "INSURANCE_AND_LICENSE_OPERATIONS_PLATFORM",
+      description:
+        "AutoSecure is a full-stack operations platform for automobile insurance agencies. It manages policies, driving license records, documents, payments, renewals, analytics, exports, templates, and user permissions from one secure dashboard.",
       features: [
-        "Implemented dual-surface architecture: Electron desktop app + Next.js web frontend sharing a single Express/MongoDB backend",
-        "Built TOTP + JWT authentication pipeline with granular role-based access control and full audit logging",
-        "Engineered analytics and reporting modules with PDF/export support and admin-controlled site settings"
-      ]
+        "Policy and license workflows cover multi-step data entry, document uploads, payment tracking, renewal messages, advanced filters, search, and XLSX exports",
+        "Owner, admin, and user roles are backed by granular permissions, TOTP 2FA, password-reset OTPs, audit logs, and a site-wide kill switch",
+        "Analytics surfaces revenue trends, policy and license breakdowns, branch performance, renewal calendars, and date-range reporting with Recharts",
+      ],
     },
-    links: { github: "https://github.com/VortexDevX/autosecure", live: "NOT_DEPLOYED" },
+    links: {
+      github: "https://github.com/VortexDevX/AutoSecure",
+      live: "NOT_DEPLOYED",
+    },
   },
   {
     id: 2,
-    title: "EMPLOYEE_MANAGEMENT",
-    frontendTexture: "/texture/EMPLOYEE_MANAGEMENT.webp",
+    title: "CHRONICLE",
+    frontendTexture: "/texture/chronicle.webp",
     backendData: {
-      sys_arch: "Express // Prisma // Flask // React // Python",
-      db_matrix: "PostgreSQL // MySQL // SQLite",
-      deploy_node: "Local // Docker // Nginx",
-      outcome: "ENTERPRISE_GRADE WORKFORCE_INTELLIGENCE_PLATFORM",
-      description: "EmployeeManagement is a multi-service workforce platform spanning telemetry collection, ML prediction, gateway control, and a role-based web dashboard. The local agent silently monitors foreground app usage and network activity, shipping telemetry to a VPS backend for processing. Solves end-to-end employee productivity visibility from raw OS-level data to actionable ML-driven insights.",
+      sys_arch: "Next.js 14 // React 18 // Zustand",
+      db_matrix: "MongoDB // AniList // Jikan // MangaDex",
+      deploy_node: "Vercel // Serverless_API",
+      outcome: "SELF_HOSTED_MEDIA_TRACKER",
+      description:
+        "Chronicle is a self-hosted tracker for anime, manhwa, donghua, and light novels. It combines library management, progress tracking, metadata lookup, cover caching, import/export, and statistics in a responsive media dashboard.",
       features: [
-        "Built a cross-platform Python background agent (PyInstaller exe) capturing foreground app + domain-level network telemetry with SQLite buffering",
-        "Designed a service-mesh architecture: employee-api, pi-gateway, workforce-ml, and frontend operating as independent deployable units",
-        "Engineered a scikit-learn ML pipeline for productivity prediction from raw telemetry feature vectors"
-      ]
+        "Library tools support create, edit, delete, progress increments, ratings, notes, search, filters, sorting, pagination, JSON import, and JSON export",
+        "Metadata lookup uses AniList as the primary source, Jikan as the anime fallback, MangaDex for manhwa covers, and image proxy routes for high-quality cached artwork",
+        "Organization features include status/type analytics, stale-entry alerts, Droppedyard for dropped titles, and a Maybe Revisit queue for entries worth checking again",
+      ],
     },
-    links: { github: "https://github.com/VortexDevX/LMA", live: "NOT_DEPLOYED" },
+    links: {
+      github: "https://github.com/VortexDevX/Chronicle",
+      live: "https://chronicle.mvlab.cloud/",
+    },
   },
   {
     id: 3,
     title: "LUXORA",
-    frontendTexture: "/texture/LUXORA.webp",
+    frontendTexture: "/texture/luxora.webp",
     backendData: {
-      sys_arch: "Express // Next.js // Redux Toolkit // TypeScript",
-      db_matrix: "MongoDB // Cloudinary // Brevo_SMTP",
-      deploy_node: "Local // Node_Server",
-      outcome: "FULL_STACK PRODUCTION_READY_COMMERCE_PLATFORM",
-      description: "Luxora is a full-stack e-commerce platform with distinct shopper, seller, and admin surfaces built on a shared Express + MongoDB backend. It handles catalog management, order workflows, promotions, sponsored listings, and transactional email via Brevo SMTP. Solves the multi-role commerce problem with clean domain separation and media-optimized delivery through Cloudinary.",
+      sys_arch: "Next.js 15 // Express 5 // Redux Toolkit",
+      db_matrix: "MongoDB // Mongoose // Cloudinary // Brevo",
+      deploy_node: "Node.js // Local_or_Server",
+      outcome: "MULTI_ROLE_ECOMMERCE_SYSTEM",
+      description:
+        "Luxora is a full-stack e-commerce application with separate shopper, seller, and admin workspaces. It covers catalog browsing, cart and checkout flows, order handling, returns, promotions, media management, email templates, and operational analytics.",
       features: [
-        "Architected three separate role surfaces (shopper, seller, admin) with scoped API domains and Redux Toolkit state slices per surface",
-        "Integrated Cloudinary media pipeline for product image upload, transformation, and CDN delivery",
-        "Built transactional + admin email system using Brevo SMTP with templated order/notification flows"
-      ]
+        "Storefront and shopper flows include product discovery, categories, filters, reviews, banners, sponsored products, cart, coupons, checkout, orders, wishlist, profile, and addresses",
+        "Seller and admin areas manage products, orders, returns, users, categories, coupons, media, banners, sponsored placements, email templates, logs, and analytics",
+        "Authentication uses JWT access and refresh tokens with role checks, password reset, optional hCaptcha, and admin or subadmin two-factor verification",
+      ],
     },
-    links: { github: "https://github.com/VortexDevX/E-Commerce", live: "NOT_DEPLOYED" },
+    links: {
+      github: "https://github.com/VortexDevX/E-Commerce",
+      live: "NOT_DEPLOYED",
+    },
   },
   {
     id: 4,
-    title: "NOCTURNE_ARCHIVE",
-    frontendTexture: "/texture/NOCTURNE-ARCHIVE.webp",
+    title: "SHADOWCORE",
+    frontendTexture: "/texture/shadowcore.webp",
     backendData: {
-      sys_arch: "Next.js 16 // React 19 // TypeScript // Tailwind 4",
-      db_matrix: "MongoDB // Mongoose // Dexie_IndexedDB",
-      deploy_node: "Local // Node_Server",
-      outcome: "OFFLINE_FIRST PERSONAL_NOVEL_SANCTUARY_PLATFORM",
-      description: "Nocturne Archive is a library-oriented TXT/EPUB reading platform with account-based sync, offline-first architecture, and a distraction-free reading experience. It blends local IndexedDB persistence via Dexie with remote MongoDB sync for a seamless online/offline hybrid flow. Solves the personal novel library problem with full progress tracking, shelf management, and a privacy-respecting reading environment.",
+      sys_arch: "Next.js 16 // Express // Discord.js v14",
+      db_matrix: "MongoDB // Discord_API // Socket.IO",
+      deploy_node: "Node.js // Single_Guild_Runtime",
+      outcome: "DISCORD_SERVER_OPERATIONS_PANEL",
+      description:
+        "ShadowCore is a single-guild Discord management dashboard with a Next.js client, Express API, Discord.js bot runtime, shared contracts, and Socket.IO live updates. It turns moderation, roles, configuration, automations, announcements, analytics, and audit logs into a web control panel.",
       features: [
-        "Implemented offline-first hybrid sync using Dexie/IndexedDB locally with MongoDB/Mongoose remote fallback",
-        "Built EPUB parsing pipeline with JSZip for client-side extraction, chapter segmentation, and in-browser rendering",
-        "Designed full library management system: progress tracking, shelf organization, import/export, and profile/auth"
-      ]
+        "Moderation tools cover kick, ban, timeout, unban, member history, live event updates, and a filterable audit timeline with structured details",
+        "Role and configuration modules support role CRUD, assignment, logging channels, moderation defaults, welcome and leave settings, and anti-spam controls",
+        "Discord OAuth2 and session cookies gate access by configured guild roles while the API, bot, database, and realtime socket layer keep dashboard state synced",
+      ],
     },
-    links: { github: "https://github.com/VortexDevX/nocturne-archive", live: "NOT_DEPLOYED" },
+    links: {
+      github: "https://github.com/VortexDevX/ShadowCore",
+      live: "NOT_DEPLOYED",
+    },
   },
   {
     id: 5,
-    title: "DUNGEON_GATE",
-    frontendTexture: "/texture/DUNGEON_GATE.webp",
+    title: "VALORANT_CIRCUIT",
+    frontendTexture: "/texture/valo-circuit.webp",
     backendData: {
-      sys_arch: "FastAPI // React // Vite // Celery",
-      db_matrix: "PostgreSQL // Redis // Prometheus",
-      deploy_node: "Local // Docker // Docker_Compose",
-      outcome: "DETERMINISTIC REAL_TIME_GAME_ECONOMY_ENGINE",
-      description: "Dungeon Gate is a simulation-first closed-loop market game engine with tick-based world updates and strict economy conservation invariants. It models treasury, player, and guild economic flows through a deterministic transactional pipeline with anti-exploit controls. Solves the integrity problem of virtual economies by enforcing total-conservation accounting at every simulation tick.",
+      sys_arch: "Next.js 16 // React 19 // TypeScript",
+      db_matrix: "MongoDB // Zod // Jose",
+      deploy_node: "Vercel // Serverless",
+      outcome: "VALORANT_TOURNAMENT_CONTROLLER",
+      description:
+        "Valorant Circuit is a tournament controller for small Valorant events. It gives organizers public event pages, team pages, bracket views, admin login, series creation, map veto control, score entry, and single-elimination bracket advancement.",
       features: [
-        "Built a deterministic tick-based simulation worker with seed/replay capability and total economy conservation enforcement",
-        "Engineered a real-time WebSocket market feed backed by Redis pub/sub for live price and event streaming",
-        "Integrated Celery task queue with Prometheus/Grafana observability stack for simulation health monitoring"
-      ]
+        "Public routes expose tournament overview, upcoming matches, bracket summaries, team histories, and live bracket pages for viewers",
+        "Admin workflows manage series matchups, bracket creation, bracket locking, map-pool selection, veto progress, result entry, and winner advancement",
+        "Core logic in bracket, series, and validator modules handles BYEs, derived series status, Valorant score rules, and rejection of ties or impossible endings",
+      ],
     },
-    links: { github: "https://github.com/VortexDevX/gate-economy", live: "NOT_DEPLOYED" },
-  }
+    links: {
+      github: "https://github.com/VortexDevX/valorant-circuit",
+      live: "https://valorant-circuit.vercel.app",
+    },
+  },
 ];
