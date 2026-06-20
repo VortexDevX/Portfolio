@@ -40,7 +40,7 @@ export const projects = [
     },
     links: {
       github: "https://github.com/VortexDevX/Chronicle",
-      live: "https://chronicle.mvlab.cloud/",
+      live: "https://chroniclex.vercel.app/",
     },
   },
   {
