@@ -1,37 +1,39 @@
 import "./globals.css";
-import { Inter, Playfair_Display, Space_Mono } from "next/font/google";
+import { EB_Garamond, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 
-const inter = Inter({
+const body = IBM_Plex_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
 });
 
-const playfair = Playfair_Display({
+const display = EB_Garamond({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-playfair",
-  weight: ["400", "700", "900"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const spaceMono = Space_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-space-mono",
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata = {
   metadataBase: new URL("https://vpatel.vercel.app"),
-  title: "Vaibhav Patel | Full-Stack Web Developer",
+  title: "Vaibhav Patel | Full-Stack Developer",
   description:
-    "High-performance Full-Stack Developer and Computer Engineering student specializing in secure realtime systems, scalable architecture, and production-grade web applications.",
+    "Computer Engineering student and Full-Stack Developer building scalable web applications, multi-tenant SaaS platforms, and modern user experiences.",
   keywords: [
     "Full Stack Developer",
     "React",
     "Next.js",
-    "Three.js",
     "Node.js",
+    "SaaS",
+    "Web Applications",
     "Portfolio",
     "Vaibhav Patel",
     "Computer Engineering",
@@ -39,9 +41,9 @@ export const metadata = {
   authors: [{ name: "Vaibhav Patel" }],
   creator: "Vaibhav Patel",
   openGraph: {
-    title: "Vaibhav Patel | Full-Stack Web Developer",
+    title: "Vaibhav Patel | Full-Stack Developer",
     description:
-      "Explore production-grade full-stack architectures and deep systems engineering.",
+      "Building scalable web applications, multi-tenant SaaS platforms, and modern user experiences.",
     type: "website",
     locale: "en_US",
     images: [
@@ -49,15 +51,15 @@ export const metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Vaibhav Patel — Full-Stack Web Developer",
+        alt: "Vaibhav Patel - Full-Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vaibhav Patel | Full-Stack Web Developer",
+    title: "Vaibhav Patel | Full-Stack Developer",
     description:
-      "High-performance Full-Stack Developer building secure, scalable web applications.",
+      "Computer Engineering student and Full-Stack Developer building production-ready web applications.",
     images: ["/og.png"],
   },
   robots: {
@@ -70,16 +72,17 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#030712",
+  themeColor: "#080A0D",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${spaceMono.variable}`}
+      className={`${body.variable} ${display.variable} ${mono.variable}`}
+      suppressHydrationWarning
     >
-      <body className="bg-[#020408] text-white antialiased overflow-hidden selection:bg-cyan-400 selection:text-black">
+      <body className="bg-night text-mist antialiased overflow-hidden selection:bg-signal selection:text-night">
         {children}
       </body>
     </html>

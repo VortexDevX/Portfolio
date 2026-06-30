@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { useStore } from "../../store/useStore";
 import { projects } from "../../data/projects";
+import AutoSecureCaseStudy from "./AutoSecureCaseStudy";
 
 export default function ProjectModal() {
   const activeId    = useStore((state) => state.activeMonolithId);
@@ -22,14 +23,21 @@ export default function ProjectModal() {
   const project = projects.find((p) => p.id === activeId);
   if (!project) return null;
 
+  if (project.caseStudy === "autosecure") {
+    return <AutoSecureCaseStudy onClose={() => setActiveId(null)} />;
+  }
+
   const hasLiveLink = project.links.live !== "NOT_DEPLOYED";
+  const hasSourceLink = Boolean(project.links.github);
+  const title = project.title.replace(/_/g, " ");
+  const stack = project.backendData.sys_arch.replace(/\/\//g, " · ");
 
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={`Project details: ${project.title.replace(/_/g, " ")}`}
-      className="fixed inset-0 z-[200] pointer-events-auto bg-[radial-gradient(circle,transparent_20%,rgba(0,0,0,0.82)_100%)] animate-in fade-in duration-700 flex flex-col justify-between overflow-hidden"
+      className="fixed inset-0 z-[200] pointer-events-auto bg-[radial-gradient(circle_at_70%_20%,rgba(75,63,114,0.22),transparent_34%),linear-gradient(180deg,rgba(8,10,13,0.96),rgba(8,10,13,0.9))] animate-in fade-in duration-700 flex flex-col justify-between overflow-hidden text-mist"
     >
       <div
         className="absolute inset-0 z-0"
@@ -37,83 +45,99 @@ export default function ProjectModal() {
         aria-hidden="true"
       />
 
-      {/* Top nav */}
-      <div className="w-full flex justify-between items-start border-b border-white/5 p-8 md:p-12 z-10 bg-gradient-to-b from-black/80 to-transparent">
+      <div className="w-full flex justify-between items-start border-b border-steel/20 p-6 md:p-8 z-10 bg-gradient-to-b from-night/95 to-night/60">
         <button
           onClick={() => setActiveId(null)}
           aria-label="Close project view"
-          className="font-mono text-gray-400 hover:text-white text-xs md:text-sm tracking-[0.4em] uppercase group flex items-center gap-6 font-bold transition-colors duration-200"
+          className="font-mono text-steel hover:text-signal text-xs md:text-sm tracking-[0.18em] uppercase group flex items-center gap-5 font-bold transition-colors duration-200"
         >
           <span className="text-2xl font-light group-hover:-translate-x-2 transition-transform duration-200">
             &larr;
           </span>
-          [ CLOSE ]
+          Close
         </button>
-        <div className="font-mono text-[10px] md:text-xs text-gray-600 tracking-[0.3em] text-right uppercase hidden md:block">
-          CONNECTION_SECURE <br />
-          <span className="text-gray-400">
-            {project.backendData.sys_arch.replace(/\/\//g, " · ")}
-          </span>
+        <div className="font-mono text-[10px] md:text-xs text-steel tracking-[0.16em] text-right hidden md:block">
+          Project details <br />
+          <span className="text-ash">{stack}</span>
         </div>
       </div>
 
-      {/* Content panels */}
-      <div className="w-full h-full relative pointer-events-none z-10">
+      <div className="relative z-10 min-h-0 flex-1 overflow-y-auto px-5 py-5 md:px-8 md:py-7">
+        <main className="mx-auto flex w-full max-w-[116rem] flex-col gap-5">
+          <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_24rem]">
+            <div className="pointer-events-auto overflow-hidden border border-steel/30 bg-night/85 shadow-[0_40px_130px_rgba(0,0,0,0.5)]">
+              <div className="flex items-center justify-between border-b border-steel/20 px-4 py-3 md:px-5">
+                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-signal">
+                  Product preview
+                </div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-steel">
+                  {String(projects.findIndex((item) => item.id === project.id) + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                </div>
+              </div>
+              <div className="relative h-[58vh] min-h-[360px] md:h-[66vh] xl:h-[calc(100vh-15.5rem)] xl:min-h-[520px]">
+                <img
+                  src={project.frontendTexture}
+                  alt={`${title} interface preview`}
+                  className="h-full w-full object-contain p-3 opacity-95 md:p-5"
+                  draggable="false"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_58%,rgba(8,10,13,0.42))]" />
+              </div>
+            </div>
 
-        {/* Bottom-left panel */}
-        <div className="absolute top-16 md:top-auto md:bottom-12 left-6 md:left-12 w-[85vw] md:w-full md:max-w-[24vw] pointer-events-auto text-left">
-          <div className="font-mono text-accent text-[10px] tracking-[0.4em] mb-4 md:mb-6 uppercase font-bold">
-            Intelligence Brief
-          </div>
-          <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl xl:text-7xl text-white tracking-tighter capitalize leading-none">
-            {project.title.replace(/_/g, " ")}
-          </h1>
-          <p className="font-mono text-[10px] md:text-xs xl:text-sm text-gray-400 leading-relaxed mt-4 md:mt-8 border-l-2 border-gray-700 pl-4 md:pl-6 bg-black/50 p-4 md:p-6 line-clamp-4 md:line-clamp-none">
-            {project.backendData.description}
-          </p>
+            <aside className="pointer-events-auto border border-steel/25 bg-surface/65 p-6 md:p-7">
+              <div className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-signal">
+                Project brief
+              </div>
+              <h1 className="mt-5 break-words font-serif text-[clamp(3rem,4.8vw,5.5rem)] capitalize leading-[0.86] tracking-[-0.035em] text-mist">
+                {title}
+              </h1>
+              <div className="mt-5 font-mono text-[10px] leading-5 tracking-[0.14em] text-steel">
+                {stack}
+              </div>
+              <p className="mt-6 border-l border-signal/50 pl-5 font-sans text-sm leading-7 text-ash">
+                {project.backendData.description}
+              </p>
 
-          <div className="mt-6 md:mt-8 flex flex-col gap-4">
-            <a
-              href={project.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-3 text-gray-400 hover:text-accent transition-colors duration-200 font-mono text-[10px] md:text-xs uppercase tracking-widest font-bold group"
-            >
-              <span className="text-accent text-lg leading-none group-hover:translate-x-2 transition-transform duration-200">
-                &gt;
-              </span>
-              SOURCE_CODE
-            </a>
-            {hasLiveLink && (
-              <a
-                href={project.links.live}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-3 text-gray-400 hover:text-accent transition-colors duration-200 font-mono text-[10px] md:text-xs uppercase tracking-widest font-bold group"
+              <div className="mt-7 flex flex-col gap-3 border-t border-steel/25 pt-5">
+                {hasSourceLink && (
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-11 items-center justify-between border border-steel/30 px-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-ash transition-colors hover:border-signal hover:text-signal"
+                  >
+                    Source code
+                    <span className="text-signal">&gt;</span>
+                  </a>
+                )}
+                {hasLiveLink && (
+                  <a
+                    href={project.links.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-11 items-center justify-between border border-steel/30 px-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-ash transition-colors hover:border-signal hover:text-signal"
+                  >
+                    Live deployment
+                    <span className="text-signal">&gt;</span>
+                  </a>
+                )}
+              </div>
+            </aside>
+          </section>
+
+          <section className="pointer-events-auto grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {project.backendData.features.map((feat) => (
+              <article
+                key={feat}
+                className="border border-steel/25 bg-surface/55 p-4 font-sans text-sm leading-6 text-ash"
               >
-                <span className="text-accent text-lg leading-none group-hover:translate-x-2 transition-transform duration-200">
-                  &gt;
-                </span>
-                LIVE_DEPLOYMENT
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Bottom-right panel */}
-        <div className="absolute bottom-12 right-6 md:right-12 md:max-w-[22vw] pointer-events-auto text-right hidden md:flex flex-col items-end">
-          <div className="font-mono text-[10px] text-gray-500 tracking-[0.4em] mb-8 uppercase font-bold border-b border-gray-800 pb-4 inline-block">
-            Execution Protocols
-          </div>
-          <ul className="space-y-4 font-mono text-[10px] xl:text-xs text-gray-400 flex flex-col items-end bg-black/40 p-5 border-r border-gray-700">
-            {project.backendData.features.map((feat, i) => (
-              <li key={i} className="flex gap-4 items-start justify-end w-full">
-                <span className="leading-relaxed text-right">{feat}</span>
-                <span className="text-gray-600 font-bold mt-1">_</span>
-              </li>
+                <span className="mb-3 block h-1.5 w-1.5 bg-signal" />
+                {feat}
+              </article>
             ))}
-          </ul>
-        </div>
+          </section>
+        </main>
       </div>
     </div>
   );

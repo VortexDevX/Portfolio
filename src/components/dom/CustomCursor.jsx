@@ -44,15 +44,15 @@ export default function CustomCursor() {
     >
       <div className="flex items-center justify-center">
         {isViewingInfo ? (
-          <div className="w-5 h-5 rounded-full border border-gray-700 flex items-center justify-center transition-all duration-200">
-            <div className="w-1 h-1 bg-gray-400 rounded-full" />
+          <div className="w-5 h-5 rounded-full border border-steel flex items-center justify-center transition-all duration-200">
+            <div className="w-1 h-1 bg-ash rounded-full" />
           </div>
         ) : isHovering ? (
-          <div className="w-8 h-8 rounded-full border border-accent flex items-center justify-center bg-accent/10 transition-all duration-200 shadow-[0_0_16px_rgba(0,229,255,0.35)]">
-            <div className="w-1.5 h-1.5 bg-white rounded-full" />
+          <div className="w-8 h-8 rounded-full border border-signal flex items-center justify-center bg-signal/10 transition-all duration-200 shadow-[0_0_18px_rgba(124,247,200,0.28)]">
+            <div className="w-1.5 h-1.5 bg-mist rounded-full" />
           </div>
         ) : (
-          <div className="w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all duration-200" />
+          <div className="w-2 h-2 bg-mist rounded-full shadow-[0_0_10px_rgba(232,236,231,0.65)] transition-all duration-200" />
         )}
       </div>
     </div>

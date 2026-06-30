@@ -1,46 +1,54 @@
+import { autosecureCaseStudy } from "./autosecureCaseStudy";
+
+const autosecureProjectFeatures = [
+  "Multi-tenant organization architecture",
+  "Subscription and quota enforcement system",
+  "Secure document storage with decoupled identifiers",
+  "Audit logging for compliance and traceability",
+];
+
 export const projects = [
   {
     id: 1,
-    title: "AUTOSECURE",
-    frontendTexture: "/texture/autosecure.webp",
+    title: autosecureCaseStudy.title.toUpperCase(),
+    frontendTexture: "/texture/dashboard.webp",
+    caseStudy: "autosecure",
     backendData: {
-      sys_arch: "Next.js 16 // Express 5 // TypeScript",
-      db_matrix: "MongoDB // Mongoose // S3/R2 // Brevo",
-      deploy_node: "Node.js // Local_or_Server",
-      outcome: "INSURANCE_AND_LICENSE_OPERATIONS_PLATFORM",
+      sys_arch: "Multi-Tenant SaaS // Organization Dashboard // Super-Admin",
+      db_matrix: autosecureCaseStudy.stack.integrations
+        .slice(0, 4)
+        .join(" // "),
+      deploy_node: "Public_Website // Agency_Workspace // Android_App",
+      outcome: "PRODUCTION_SAAS_FOR_POLICY_AND_LICENSE_OPERATIONS",
       description:
-        "AutoSecure is a full-stack operations platform for automobile insurance agencies. It manages policies, driving license records, documents, payments, renewals, analytics, exports, templates, and user permissions from one secure dashboard.",
-      features: [
-        "Policy and license workflows cover multi-step data entry, document uploads, payment tracking, renewal messages, advanced filters, search, and XLSX exports",
-        "Owner, admin, and user roles are backed by granular permissions, TOTP 2FA, password-reset OTPs, audit logs, and a site-wide kill switch",
-        "Analytics surfaces revenue trends, policy and license breakdowns, branch performance, renewal calendars, and date-range reporting with Recharts",
-      ],
+        "A production-ready multi-tenant SaaS platform built for managing insurance policies and licenses across multiple organizations. Features include organization-based data isolation, role-based access control, subscription management, audit logs, secure document storage, reminders, and an admin dashboard designed for real-world usage.",
+      features: autosecureProjectFeatures,
     },
     links: {
-      github: "https://github.com/VortexDevX/AutoSecure",
-      live: "NOT_DEPLOYED",
+      live: autosecureCaseStudy.liveUrl,
     },
   },
   {
     id: 2,
-    title: "CHRONICLE",
-    frontendTexture: "/texture/chronicle.webp",
+    title: "SHADOWCORE",
+    frontendTexture: "/texture/shadowcore.webp",
     backendData: {
-      sys_arch: "Next.js 14 // React 18 // Zustand",
-      db_matrix: "MongoDB // AniList // Jikan // MangaDex",
-      deploy_node: "Vercel // Serverless_API",
-      outcome: "SELF_HOSTED_MEDIA_TRACKER",
+      sys_arch: "Next.js 16 // Express // Discord.js v14",
+      db_matrix: "MongoDB // Discord_API // Socket.IO",
+      deploy_node: "Node.js // Single_Guild_Runtime",
+      outcome: "REAL_TIME_DISCORD_OPERATIONS_SYSTEM",
       description:
-        "Chronicle is a self-hosted tracker for anime, manhwa, donghua, and light novels. It combines library management, progress tracking, metadata lookup, cover caching, import/export, and statistics in a responsive media dashboard.",
+        "A real-time Discord management platform built for handling server operations, automation, moderation tools, and live interactions through Discord's API.",
       features: [
-        "Library tools support create, edit, delete, progress increments, ratings, notes, search, filters, sorting, pagination, JSON import, and JSON export",
-        "Metadata lookup uses AniList as the primary source, Jikan as the anime fallback, MangaDex for manhwa covers, and image proxy routes for high-quality cached artwork",
-        "Organization features include status/type analytics, stale-entry alerts, Droppedyard for dropped titles, and a Maybe Revisit queue for entries worth checking again",
+        "Real-time event propagation between bot runtime, API, and dashboard",
+        "Backend-enforced Discord role access across protected APIs",
+        "Audit timeline for moderation, role, and configuration changes",
+        "Modular service boundaries for guild configuration and operations",
       ],
     },
     links: {
-      github: "https://github.com/VortexDevX/Chronicle",
-      live: "https://chroniclex.vercel.app/",
+      github: "https://github.com/VortexDevX/ShadowCore",
+      live: "NOT_DEPLOYED",
     },
   },
   {
@@ -51,13 +59,14 @@ export const projects = [
       sys_arch: "Next.js 15 // Express 5 // Redux Toolkit",
       db_matrix: "MongoDB // Mongoose // Cloudinary // Brevo",
       deploy_node: "Node.js // Local_or_Server",
-      outcome: "MULTI_ROLE_ECOMMERCE_SYSTEM",
+      outcome: "MULTI_ROLE_COMMERCE_BACKEND",
       description:
-        "Luxora is a full-stack e-commerce application with separate shopper, seller, and admin workspaces. It covers catalog browsing, cart and checkout flows, order handling, returns, promotions, media management, email templates, and operational analytics.",
+        "A multi-role commerce backend with authentication, product management, orders, and role-based permissions designed around scalable backend architecture.",
       features: [
-        "Storefront and shopper flows include product discovery, categories, filters, reviews, banners, sponsored products, cart, coupons, checkout, orders, wishlist, profile, and addresses",
-        "Seller and admin areas manage products, orders, returns, users, categories, coupons, media, banners, sponsored placements, email templates, logs, and analytics",
-        "Authentication uses JWT access and refresh tokens with role checks, password reset, optional hCaptcha, and admin or subadmin two-factor verification",
+        "Role-separated APIs for shopper, seller, admin, and subadmin flows",
+        "JWT access/refresh authentication with protected admin operations",
+        "Order, return, coupon, media, and email-template service modules",
+        "Operational analytics for catalog, order, and user activity",
       ],
     },
     links: {
@@ -67,24 +76,25 @@ export const projects = [
   },
   {
     id: 4,
-    title: "SHADOWCORE",
-    frontendTexture: "/texture/shadowcore.webp",
+    title: "CHRONICLE",
+    frontendTexture: "/texture/chronicle.webp",
     backendData: {
-      sys_arch: "Next.js 16 // Express // Discord.js v14",
-      db_matrix: "MongoDB // Discord_API // Socket.IO",
-      deploy_node: "Node.js // Single_Guild_Runtime",
-      outcome: "DISCORD_SERVER_OPERATIONS_PANEL",
+      sys_arch: "Next.js 14 // React 18 // Zustand",
+      db_matrix: "MongoDB // AniList // Jikan // MangaDex",
+      deploy_node: "Vercel // Serverless_API",
+      outcome: "SELF_HOSTED_MEDIA_DATA_SYSTEM",
       description:
-        "ShadowCore is a single-guild Discord management dashboard with a Next.js client, Express API, Discord.js bot runtime, shared contracts, and Socket.IO live updates. It turns moderation, roles, configuration, automations, announcements, analytics, and audit logs into a web control panel.",
+        "A self-hosted media tracking platform for organizing anime, manga, manhwa, novels, and more with progress tracking, ratings, custom collections, and a clean reading experience.",
       features: [
-        "Moderation tools cover kick, ban, timeout, unban, member history, live event updates, and a filterable audit timeline with structured details",
-        "Role and configuration modules support role CRUD, assignment, logging channels, moderation defaults, welcome and leave settings, and anti-spam controls",
-        "Discord OAuth2 and session cookies gate access by configured guild roles while the API, bot, database, and realtime socket layer keep dashboard state synced",
+        "Metadata ingestion with AniList primary lookup and Jikan/MangaDex fallbacks",
+        "Image proxy and cover caching for stable external media rendering",
+        "JSON import/export path for portable self-hosted data",
+        "Indexed library views for progress, status, stale entries, and revisit queues",
       ],
     },
     links: {
-      github: "https://github.com/VortexDevX/ShadowCore",
-      live: "NOT_DEPLOYED",
+      github: "https://github.com/VortexDevX/Chronicle",
+      live: "https://chroniclex.vercel.app/",
     },
   },
   {
@@ -95,13 +105,14 @@ export const projects = [
       sys_arch: "Next.js 16 // React 19 // TypeScript",
       db_matrix: "MongoDB // Zod // Jose",
       deploy_node: "Vercel // Serverless",
-      outcome: "VALORANT_TOURNAMENT_CONTROLLER",
+      outcome: "TOURNAMENT_STATE_AND_BRACKET_CONTROLLER",
       description:
-        "Valorant Circuit is a tournament controller for small Valorant events. It gives organizers public event pages, team pages, bracket views, admin login, series creation, map veto control, score entry, and single-elimination bracket advancement.",
+        "A tournament management platform built to handle brackets, match progression, standings, and event organization with a focus on predictable state management.",
       features: [
-        "Public routes expose tournament overview, upcoming matches, bracket summaries, team histories, and live bracket pages for viewers",
-        "Admin workflows manage series matchups, bracket creation, bracket locking, map-pool selection, veto progress, result entry, and winner advancement",
-        "Core logic in bracket, series, and validator modules handles BYEs, derived series status, Valorant score rules, and rejection of ties or impossible endings",
+        "Bracket state engine with BYE handling and winner advancement",
+        "Map veto workflow with controlled progression and validation",
+        "Score validation that rejects ties and impossible endings",
+        "Public read models for event, team, match, and bracket views",
       ],
     },
     links: {

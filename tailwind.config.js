@@ -4,19 +4,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ── Surface tokens ──────────────────────────────────────
-        // One canonical name per shade. No more scattered magic hex values.
-        void:     '#030712', // deepest bg — canvas, body
-        pit:      '#020408', // form backgrounds, deepest panels
-        surface:  '#040812', // card/panel backgrounds
-        edge:     '#0f172a', // borders when slightly visible
+        // ── Midnight Atelier tokens ─────────────────────────────
+        night:          '#080A0D',
+        graphite:       '#12151A',
+        mist:           '#E8ECE7',
+        ash:            '#AEB7B1',
+        signal:         '#7CF7C8',
+        ember:          '#FF6B4A',
+        violetShadow:   '#4B3F72',
+        steel:          '#6F7D8C',
 
-        // ── Accent system ────────────────────────────────────────
-        // `accent` is RESERVED for maximum-signal moments only:
-        // active states, CTA borders, critical labels.
-        // Use `dim` for secondary/decorative accent usage.
-        accent:   '#00e5ff', // cyan — primary signal color
-        dim:      '#1e4a52', // muted teal — decorative, secondary borders
+        // Legacy aliases used by existing components.
+        void:     '#080A0D',
+        pit:      '#0D0F12',
+        surface:  '#12151A',
+        edge:     '#45474A',
+        accent:   '#7CF7C8',
+        dim:      '#6F7D8C',
 
         // ── Text scale ───────────────────────────────────────────
         // Use Tailwind's built-in gray scale for text.
@@ -27,8 +31,8 @@ export default {
         // Ghost text     → text-gray-600 / text-gray-700
       },
       fontFamily: {
-        sans:  ['var(--font-inter)',       'system-ui',  'sans-serif'],
-        serif: ['var(--font-playfair)',    'Georgia',    'serif'],
+        sans:  ['var(--font-body)',       'system-ui',  'sans-serif'],
+        serif: ['var(--font-display)',    'Georgia',    'serif'],
         mono:  ['var(--font-space-mono)', 'Menlo',      'monospace'],
       },
     },

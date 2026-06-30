@@ -10,7 +10,7 @@ A high-performance, WebGL-accelerated 3D developer portfolio with a brutalist, c
 - **Three.js** & **React Three Fiber (R3F)** — GPU-accelerated 3D rendering with scroll-synced camera interpolation and texture-mapped project planes.
 - **Tailwind CSS** — Strict utility-first brutalist styling with viewport-adaptive scaling across both surface layers.
 - **Zustand** — Lightweight global state synchronizing DOM overlays with 3D canvas coordinates in real-time.
-- **Web3Forms** — Zero-backend contact form integration with environment-secured access keys.
+- **Resend** — Server-side contact email delivery through `RESEND_API_KEY` and `SENDER_EMAIL`.
 
 ### DUAL_SURFACE_STRATEGY
 

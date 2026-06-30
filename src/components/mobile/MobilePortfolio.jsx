@@ -2,17 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import { projects } from "../../data/projects";
+import { experiences } from "../../data/experience";
 import useContactForm from "../../hooks/useContactForm";
+import AutoSecureCaseStudy from "../dom/AutoSecureCaseStudy";
 
 const BOOT_LINES = [
-  "[ INIT_SYS... ]",
-  "[ LOADING_MODULES... ]",
-  "[ MOUNTING_IDENTITY_NODE... ]",
-  "[ ESTABLISHING_UPLINK... ]",
-  "[ STATUS: OPERATIONAL ]",
+  "Loading systems",
+  "Mounting projects",
+  "Preparing interface",
+  "Ready",
 ];
 
-/* ──────────────────── BOOT SEQUENCE ──────────────────── */
 function BootSequence({ onComplete }) {
   const [lines, setLines] = useState([]);
   const [done, setDone] = useState(false);
@@ -25,468 +25,463 @@ function BootSequence({ onComplete }) {
         i++;
       } else {
         clearInterval(interval);
-        setTimeout(() => setDone(true), 300);
-        setTimeout(() => onComplete(), 800);
+        setTimeout(() => setDone(true), 250);
+        setTimeout(() => onComplete(), 650);
       }
-    }, 250);
+    }, 210);
     return () => clearInterval(interval);
   }, [onComplete]);
 
   return (
     <div
-      className={`fixed inset-0 z-[9000] bg-void flex flex-col justify-center items-center px-8 transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[9000] bg-night flex flex-col justify-center items-center px-8 transition-opacity duration-500 ${
         done ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
-      <div className="font-mono text-[10px] tracking-widest text-gray-500 space-y-2">
+      <div className="font-serif text-4xl text-mist mb-8">Vaibhav Patel</div>
+      <div className="font-mono text-[11px] tracking-[0.16em] text-steel space-y-2">
         {lines.map((line, i) => (
           <div
             key={i}
             className="animate-[fadeSlideIn_0.3s_ease_forwards]"
-            style={{ color: i === lines.length - 1 ? "#00e5ff" : undefined }}
+            style={{ color: i === lines.length - 1 ? "#7CF7C8" : undefined }}
           >
             {line}
           </div>
         ))}
-        <span className="inline-block w-1.5 h-3 bg-accent animate-pulse ml-1" />
       </div>
     </div>
   );
 }
 
-/* ──────────────────── STICKY HUD ──────────────────── */
 function HUD() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "ABOUT", href: "#about" },
-    { label: "PROJECTS", href: "#projects" },
-    { label: "CONTACT", href: "#contact" },
+    { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Contact", href: "#contact" },
   ];
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-[100] bg-void/90 backdrop-blur-sm border-b border-gray-800/50 px-4 py-3 flex justify-between items-center font-mono text-[9px] tracking-widest uppercase">
-        <div className="text-gray-500 font-bold">VP.SYS</div>
+      <div className="fixed top-0 left-0 right-0 z-[100] bg-night/88 backdrop-blur-md border-b border-steel/25 px-4 py-3 flex justify-between items-center">
+        <a href="#" className="font-serif text-2xl text-mist">
+          Vaibhav
+        </a>
 
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-gray-400 font-bold">ONLINE</span>
-          </div>
-
+        <div className="flex items-center gap-3">
+          <span className="h-2 w-2 rounded-full bg-signal shadow-[0_0_14px_rgba(124,247,200,0.45)]" />
           <button
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle navigation"
-            className="flex flex-col gap-1 p-1"
+            aria-expanded={menuOpen}
+            className="min-h-11 min-w-11 border border-steel/35 flex flex-col items-center justify-center gap-1.5"
           >
             <span
-              className={`block w-4 h-px bg-gray-500 transition-transform duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+              className={`block w-5 h-px bg-ash transition-transform duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
             />
             <span
-              className={`block w-4 h-px bg-gray-500 transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`}
+              className={`block w-5 h-px bg-ash transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""}`}
             />
             <span
-              className={`block w-4 h-px bg-gray-500 transition-transform duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+              className={`block w-5 h-px bg-ash transition-transform duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
             />
           </button>
         </div>
       </div>
 
-      <div
-        className={`fixed top-[41px] left-0 right-0 z-[99] bg-void/95 backdrop-blur-sm border-b border-gray-800/50 transition-all duration-300 overflow-hidden ${
-          menuOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+      <nav
+        className={`fixed top-[61px] left-0 right-0 z-[99] bg-night/95 backdrop-blur-md border-b border-steel/25 transition-all duration-300 overflow-hidden ${
+          menuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
         }`}
+        aria-label="Mobile navigation"
       >
         {navItems.map(({ label, href }) => (
           <a
             key={label}
             href={href}
             onClick={() => setMenuOpen(false)}
-            className="block px-5 py-3 font-mono text-[10px] tracking-[0.4em] uppercase text-gray-500 hover:text-accent border-b border-gray-800/30 transition-colors duration-150 font-bold"
+            className="block px-5 py-4 font-mono text-[11px] tracking-[0.16em] text-ash hover:text-signal border-b border-steel/15 transition-colors"
           >
-            {"> "}
             {label}
           </a>
         ))}
-      </div>
+      </nav>
     </>
   );
 }
 
-/* ──────────────────── HERO SECTION ──────────────────── */
-function HeroSection() {
+function SectionDivider({ label, index }) {
   return (
-    <section className="h-[100dvh] flex flex-col items-center justify-center px-6 relative">
-      <div className="w-20 h-20 mb-10 relative">
-        <div
-          className="absolute inset-0 border border-gray-700"
-          style={{
-            animation: "spin 8s linear infinite",
-            transform: "rotate(45deg)",
-          }}
-        />
-        <div
-          className="absolute inset-2 border border-gray-800"
-          style={{
-            animation: "spin 12s linear infinite reverse",
-            transform: "rotate(30deg)",
-          }}
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-2 h-2 bg-accent/50 rotate-45" />
-        </div>
-      </div>
-
-      <h1 className="font-serif text-[15vw] leading-[0.9] text-white tracking-tighter text-center">
-        VAIBHAV
-        <br />
-        PATEL
-      </h1>
-
-      <div className="font-mono text-gray-400 text-[10px] tracking-[0.4em] uppercase mt-6 font-bold">
-        FULL_STACK_WEB_DEVELOPER
-      </div>
-
-      <div className="absolute bottom-8 font-mono text-[9px] text-gray-600 tracking-[0.3em] uppercase animate-pulse">
-        ↓ SCROLL ↓
-      </div>
-    </section>
-  );
-}
-
-/* ──────────────────── SECTION DIVIDER ──────────────────── */
-function SectionDivider({ label }) {
-  return (
-    <div className="flex items-center gap-3 px-5 py-6">
-      <div className="h-px flex-1 bg-gray-800" />
-      <span className="font-mono text-gray-600 text-[9px] tracking-[0.4em] uppercase font-bold whitespace-nowrap">
-        // {label}
+    <div className="flex items-center gap-3 px-5 py-8">
+      <span className="font-mono text-[11px] text-steel">
+        {String(index).padStart(2, "0")}
       </span>
-      <div className="h-px flex-1 bg-gray-800" />
+      <div className="h-px flex-1 bg-steel/25" />
+      <span className="font-serif text-2xl text-mist whitespace-nowrap">
+        {label}
+      </span>
     </div>
   );
 }
 
-/* ──────────────────── SKILL ROW ──────────────────── */
-function SkillRow({ label, value, isAccent }) {
-  const [open, setOpen] = useState(false);
-
+function HeroSection() {
   return (
-    <button
-      onClick={() => setOpen(!open)}
-      className="w-full text-left border-b border-gray-800/50 px-5 py-4 active:bg-white/[0.02] transition-colors"
-    >
-      <div className="flex justify-between items-center">
-        <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest">
-          {label}
-        </span>
-        <span className="font-mono text-[10px] text-gray-700">
-          {open ? "▲" : "▼"}
-        </span>
+    <section className="min-h-[100dvh] flex flex-col justify-center px-5 pt-20 relative">
+      <div className="absolute inset-x-5 top-28 h-px bg-gradient-to-r from-transparent via-steel/35 to-transparent" />
+      <div className="font-mono text-[11px] tracking-[0.16em] text-steel flex items-center gap-2 mb-5">
+        <span className="h-2 w-2 rounded-full bg-signal" />
+        Computer Engineering Student - Full-Stack Developer
       </div>
-      <div
-        className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{ maxHeight: open ? "80px" : "0px", opacity: open ? 1 : 0 }}
+      <h1 className="font-serif text-[22vw] leading-[0.82] tracking-[-0.05em] text-mist">
+        Vaibhav
+        <br />
+        Patel
+      </h1>
+      <p className="mt-8 border-l border-signal/50 pl-5 font-sans text-base leading-7 text-ash">
+        Building scalable web applications, multi-tenant SaaS platforms, and
+        modern user experiences.
+      </p>
+      <a
+        href="#projects"
+        className="mt-10 min-h-12 border border-signal px-5 py-3 text-center font-mono text-[11px] tracking-[0.16em] text-signal"
       >
-        <div
-          className={`font-mono text-xs mt-3 leading-relaxed ${
-            isAccent ? "text-accent font-bold tracking-widest" : "text-gray-300"
-          }`}
-        >
-          {value}
-        </div>
-      </div>
-    </button>
+        Explore projects
+      </a>
+    </section>
   );
 }
 
-/* ──────────────────── IDENTITY SECTION ──────────────────── */
 function IdentitySection() {
+  const disciplines = [
+    ["Frontend", "React, Next.js, TypeScript, PWA"],
+    ["Backend", "Node.js, Express, WebSockets, APIs"],
+    ["Security", "JWT, OAuth2, 2FA, RBAC"],
+    ["Data", "MongoDB, PostgreSQL, IndexedDB"],
+    ["Tools", "Git, Docker, AWS S3/R2, CI/CD"],
+  ];
+
   return (
-    <section id="about" className="px-5 pb-10">
-      <div className="mb-10">
-        <div className="font-mono text-accent text-[9px] tracking-[0.4em] uppercase font-bold mb-4 border-b border-gray-800 pb-2 inline-block">
-          System Identity
-        </div>
-        <p className="font-serif text-lg text-gray-300 leading-relaxed">
-          Full-Stack Developer and 3rd-year Computer Engineering student
-          building production-grade web applications across frontend and
-          backend. Strong focus on security, realtime systems, and scalable
-          architecture. Experience in owning end-to-end features from design to
-          deployment.
+    <section id="about" className="px-5 pb-8">
+      <div className="atelier-soft-panel p-6 mb-6">
+        <h2 className="font-serif text-3xl leading-tight text-[#161A18]">
+          I enjoy building software from end to end.
+        </h2>
+        <p className="mt-4 font-sans text-base leading-7 text-[#303834]">
+          I'm a Computer Engineering student and Full-Stack Developer who
+          enjoys building products that solve real problems. I work across the
+          full stack: UI, APIs, databases, deployment, and the small production
+          details that make software reliable.
         </p>
       </div>
 
-      <div className="mb-10">
-        <div className="font-mono text-accent text-[9px] tracking-[0.4em] uppercase font-bold mb-4 border-b border-gray-800 pb-2 inline-block">
-          Education Node
+      <div className="atelier-panel p-5">
+        <div className="font-mono text-[11px] tracking-[0.16em] text-signal mb-5">
+          System coverage
         </div>
-        <div className="font-serif text-base text-white mb-1 tracking-wide">
-          Bachelor of Engineering (Computer Engineering)
+        <div className="space-y-4">
+          {disciplines.map(([label, value], index) => (
+            <div key={label} className="grid grid-cols-[2rem_1fr] gap-4 border-b border-steel/20 pb-4 last:border-b-0">
+              <span className="font-mono text-[11px] text-steel">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <div className="font-serif text-2xl text-mist">{label}</div>
+                <p className="mt-1 font-sans text-sm leading-6 text-ash">
+                  {value}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="font-mono text-gray-400 text-[10px] tracking-widest uppercase">
-          Ahmedabad Institute of Technology
-        </div>
-        <div className="font-mono text-gray-600 text-[9px] mt-2 uppercase tracking-[0.3em] font-bold">
-          Expected 2027
-        </div>
-      </div>
-
-      <div className="border border-gray-800 bg-surface/80">
-        <div className="px-5 py-4 border-b border-gray-800">
-          <span className="font-mono text-accent text-[9px] tracking-[0.4em] uppercase font-bold">
-            Core Competencies
-          </span>
-        </div>
-        <SkillRow
-          label="Languages"
-          value="JavaScript (ES6+), TypeScript, Python"
-        />
-        <SkillRow label="Frontend" value="React, Next.js, HTML5, CSS3, PWA" />
-        <SkillRow label="Backend" value="Node.js, Express, WebSockets, APIs" />
-        <SkillRow label="Databases" value="MongoDB, PostgreSQL, IndexedDB" />
-        <SkillRow label="Security" value="JWT, OAuth2, 2FA, RBAC" isAccent />
-        <SkillRow label="Dev_Tools" value="Git, Docker, AWS S3, CI/CD" />
       </div>
     </section>
   );
 }
 
-/* ──────────────────── PROJECT CARD ──────────────────── */
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onOpenCaseStudy }) {
   const [expanded, setExpanded] = useState(false);
-  const [flashing, setFlashing] = useState(false);
+  const isCaseStudy = project.caseStudy === "autosecure";
+  const hasSourceLink = Boolean(project.links.github);
 
-  const handleDecrypt = () => {
-    if (!expanded) {
-      setFlashing(true);
-      setTimeout(() => {
-        setFlashing(false);
-        setExpanded(true);
-      }, 400);
-    } else {
-      setExpanded(false);
+  const handleOpen = () => {
+    if (isCaseStudy) {
+      onOpenCaseStudy(project.caseStudy);
+      return;
     }
+    setExpanded((value) => !value);
   };
 
   return (
-    <div
-      className="mx-5 mb-6 border border-gray-800 bg-surface/60 overflow-hidden"
-      style={
-        flashing ? { animation: "decryptFlash 0.4s ease forwards" } : undefined
-      }
-    >
-      <div className="relative w-full aspect-video bg-black overflow-hidden">
+    <article className={`mx-5 mb-7 overflow-hidden ${isCaseStudy ? "border border-signal/45 bg-signal/10" : "atelier-panel"}`}>
+      <div className="relative w-full aspect-[4/3] bg-night overflow-hidden">
         <img
           src={project.frontendTexture}
           alt={project.title.replace(/_/g, " ")}
-          className="w-full h-full object-cover opacity-90"
+          className="w-full h-full object-cover opacity-80 grayscale transition-all duration-500"
           loading="lazy"
         />
-        <div className="absolute top-3 left-3 z-10 font-mono text-[9px] text-gray-400 tracking-widest font-bold bg-black/70 px-2 py-1">
-          PROJ_0{index + 1}
+        <div className="absolute inset-0 bg-gradient-to-t from-night via-night/10 to-transparent" />
+        <div className="absolute top-4 left-4 font-mono text-[10px] tracking-[0.16em] text-ash bg-night/70 border border-steel/25 px-3 py-2">
+          {String(index + 1).padStart(2, "0")}
         </div>
+        {isCaseStudy && (
+          <div className="absolute top-4 right-4 font-mono text-[10px] tracking-[0.16em] text-signal bg-night/70 border border-signal/30 px-3 py-2">
+            Case study
+          </div>
+        )}
       </div>
 
-      <div className="px-5 pt-4 pb-2">
-        <h3 className="font-serif text-2xl text-white tracking-tight capitalize mb-2">
+      <div className="p-5">
+        <h3 className="font-serif text-4xl leading-none text-mist capitalize">
           {project.title.replace(/_/g, " ")}
         </h3>
-        <div className="font-mono text-[10px] text-gray-600 tracking-wider leading-relaxed">
+        <div className="mt-3 font-mono text-[11px] text-steel tracking-[0.12em]">
           {project.backendData.sys_arch.replace(/\/\//g, " · ")}
         </div>
-      </div>
+        <p className="mt-4 font-sans text-sm leading-6 text-ash">
+          {project.backendData.outcome.replace(/_/g, " ")}
+        </p>
 
-      <div
-        className="overflow-hidden transition-all duration-500 ease-in-out"
-        style={{
-          maxHeight: expanded ? "600px" : "0px",
-          opacity: expanded ? 1 : 0,
-        }}
-      >
-        <div className="px-5 pt-3 pb-2">
-          <p className="font-mono text-[11px] text-gray-400 leading-relaxed mb-5">
+        <div
+          className="overflow-hidden transition-all duration-500"
+          style={{
+            maxHeight: expanded ? "560px" : "0px",
+            opacity: expanded ? 1 : 0,
+          }}
+        >
+          <p className="mt-5 font-sans text-base leading-7 text-ash">
             {project.backendData.description}
           </p>
-
-          <div className="space-y-3 mb-5">
-            {project.backendData.features.map((feat, i) => (
-              <div key={i} className="flex gap-3 items-start">
-                <span className="text-gray-600 font-mono text-xs mt-0.5">
-                  ┃
-                </span>
-                <span className="font-mono text-[11px] text-gray-300 leading-relaxed">
-                  {feat}
-                </span>
+          <div className="mt-5 space-y-3">
+            {project.backendData.features.map((feat) => (
+              <div key={feat} className="flex gap-3 font-sans text-sm leading-6 text-ash">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-signal" />
+                <span>{feat}</span>
               </div>
             ))}
           </div>
-
-          <div className="flex gap-3">
-            <a
-              href={project.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="flex-1 border border-gray-800 bg-void text-gray-300 font-mono text-[10px] tracking-widest uppercase py-3 text-center active:bg-accent active:text-black transition-colors font-bold"
-            >
-              SOURCE
-            </a>
+          <div className="mt-6 flex gap-3">
+            {hasSourceLink && (
+              <a
+                href={project.links.github}
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 border border-steel/35 bg-night/60 text-ash font-mono text-[10px] tracking-[0.16em] py-3 text-center hover:border-signal hover:text-signal transition-colors"
+              >
+                Source
+              </a>
+            )}
             {project.links.live !== "NOT_DEPLOYED" && (
               <a
                 href={project.links.live}
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 border border-gray-800 bg-void text-gray-300 font-mono text-[10px] tracking-widest uppercase py-3 text-center active:bg-accent active:text-black transition-colors font-bold"
+                className="flex-1 border border-steel/35 bg-night/60 text-ash font-mono text-[10px] tracking-[0.16em] py-3 text-center hover:border-signal hover:text-signal transition-colors"
               >
-                LIVE
+                Live
               </a>
             )}
           </div>
         </div>
-      </div>
 
-      <button
-        onClick={handleDecrypt}
-        className="w-full py-4 font-mono text-[10px] tracking-[0.3em] uppercase text-gray-600 active:text-accent transition-colors font-bold border-t border-gray-800/50"
-      >
-        {expanded ? "▲ COLLAPSE" : "▼ DECRYPT INTEL"}
-      </button>
-    </div>
+        <button
+          onClick={handleOpen}
+          className="mt-6 w-full min-h-12 border border-steel/35 font-mono text-[11px] tracking-[0.16em] text-mist hover:border-signal hover:text-signal transition-colors"
+        >
+          {isCaseStudy ? "Open case study" : expanded ? "Close project" : "Read project"}
+        </button>
+      </div>
+    </article>
   );
 }
 
-/* ──────────────────── PROJECTS SECTION ──────────────────── */
-function ProjectsSection() {
+function ProjectsSection({ onOpenCaseStudy }) {
   return (
-    <section id="projects" className="pb-10">
+    <section id="projects" className="pb-8">
       {projects.map((project, idx) => (
-        <ProjectCard key={project.id} project={project} index={idx} />
+        <ProjectCard
+          key={project.id}
+          project={project}
+          index={idx}
+          onOpenCaseStudy={onOpenCaseStudy}
+        />
       ))}
     </section>
   );
 }
 
-/* ──────────────────── CONTACT SECTION ──────────────────── */
+function ExperienceSection() {
+  return (
+    <section id="experience" className="px-5 pb-8">
+      <div className="space-y-5">
+        {experiences.map((item, index) => (
+          <article key={item.id} className="atelier-panel p-5">
+            <div className="flex items-start justify-between gap-4">
+              <span className="font-mono text-[11px] text-steel">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="border border-signal/35 px-3 py-1 font-mono text-[10px] tracking-[0.14em] text-signal">
+                {item.duration}
+              </span>
+            </div>
+            <div className="mt-5 font-mono text-[10px] tracking-[0.14em] text-steel">
+              {item.start} - {item.end}
+            </div>
+            <h3 className="mt-3 font-serif text-4xl leading-none text-mist">
+              {item.role}
+            </h3>
+            <div className="mt-2 font-sans text-base text-ash">
+              {item.organization}
+            </div>
+            <p className="mt-4 font-sans text-sm leading-6 text-ash">
+              {item.summary}
+            </p>
+            <div className="mt-5 space-y-3">
+              {item.highlights.map((highlight) => (
+                <div key={highlight} className="flex gap-3 font-sans text-sm leading-6 text-ash">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-signal" />
+                  <span>{highlight}</span>
+                </div>
+              ))}
+            </div>
+            <a
+              href={item.link}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 block min-h-12 border border-steel/35 py-4 text-center font-mono text-[11px] tracking-[0.16em] text-mist hover:border-signal hover:text-signal transition-colors"
+            >
+              View work
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ContactSection() {
   const { status, handleSubmit } = useContactForm();
 
   return (
     <section id="contact" className="px-5 pb-10">
-      <div className="mb-8">
-        <h2 className="font-serif text-2xl text-white leading-snug">
-          Ready to formulate high&#8209;performance infrastructure?
+      <div className="mb-6">
+        <h2 className="font-serif text-4xl text-mist leading-none">
+          Building something interesting?
         </h2>
+        <p className="mt-4 font-sans text-base leading-7 text-ash">
+          Whether it's a full-stack application, an internal dashboard, or a
+          SaaS product, I enjoy building software that's reliable, scalable, and
+          pleasant to use.
+        </p>
       </div>
 
-      <div className="flex gap-3 mb-8">
-        <a
-          href="https://linkedin.com/in/vaibhavpatel-dev/"
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 border border-gray-800 bg-surface text-gray-300 font-mono text-[10px] tracking-widest uppercase py-4 text-center active:bg-accent active:text-black transition-colors font-bold flex items-center justify-center"
-        >
-          LINKEDIN
-        </a>
-        <a
-          href="https://github.com/VortexDevX"
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 border border-gray-800 bg-surface text-gray-300 font-mono text-[10px] tracking-widest uppercase py-4 text-center active:bg-accent active:text-black transition-colors font-bold flex items-center justify-center"
-        >
-          GITHUB
-        </a>
-        <a
-          href="/resume.pdf"
-          download
-          className="flex-1 border border-gray-800 bg-surface text-gray-300 font-mono text-[10px] tracking-widest uppercase py-4 text-center active:bg-accent active:text-black transition-colors font-bold flex items-center justify-center"
-        >
-          RESUME
-        </a>
+      <div className="grid grid-cols-3 gap-3 mb-6">
+        {[
+          ["LinkedIn", "https://linkedin.com/in/vaibhavpatel-dev/"],
+          ["GitHub", "https://github.com/VortexDevX"],
+          ["Resume", "/resume.pdf"],
+        ].map(([label, href]) => (
+          <a
+            key={label}
+            href={href}
+            target={label === "Resume" ? undefined : "_blank"}
+            rel={label === "Resume" ? undefined : "noreferrer"}
+            download={label === "Resume" ? true : undefined}
+            className="border border-steel/35 bg-surface/70 text-ash font-mono text-[10px] tracking-[0.12em] py-4 text-center hover:border-signal hover:text-signal transition-colors"
+          >
+            {label}
+          </a>
+        ))}
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="border border-gray-800 bg-pit p-5 space-y-5"
-      >
+      <form onSubmit={handleSubmit} className="atelier-panel p-5 space-y-5">
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+        />
+        {[
+          ["name", "Name", "Your name", "text"],
+          ["email", "Email", "your@email.com", "email"],
+        ].map(([name, label, placeholder, type]) => (
+          <div key={name} className="space-y-2">
+            <label className="font-mono text-steel text-[11px] tracking-[0.16em]">
+              {label}
+            </label>
+            <input
+              type={type}
+              name={name}
+              required
+              maxLength={name === "email" ? 120 : 80}
+              placeholder={placeholder}
+              className="w-full bg-night/70 border border-steel/35 focus:border-signal outline-none text-mist px-4 py-3 font-sans text-base transition-colors"
+            />
+          </div>
+        ))}
         <div className="space-y-2">
-          <label className="font-mono text-gray-500 text-[9px] tracking-widest uppercase font-bold">
-            IDENTIFIER_
-          </label>
-          <input
-            type="text"
-            name="name"
-            required
-            placeholder="YOUR NAME"
-            className="w-full bg-surface border border-gray-800 focus:border-accent outline-none text-white px-4 py-3 font-mono text-[11px] tracking-wider transition-colors"
-          />
-        </div>
-        <div className="space-y-2">
-          <label className="font-mono text-gray-500 text-[9px] tracking-widest uppercase font-bold">
-            RETURN_NODE_
-          </label>
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="YOUR EMAIL"
-            className="w-full bg-surface border border-gray-800 focus:border-accent outline-none text-white px-4 py-3 font-mono text-[11px] tracking-wider transition-colors"
-          />
-        </div>
-        <div className="space-y-2">
-          <label className="font-mono text-gray-500 text-[9px] tracking-widest uppercase font-bold">
-            TRANSMISSION_PAYLOAD_
+          <label className="font-mono text-steel text-[11px] tracking-[0.16em]">
+            Message
           </label>
           <textarea
             name="message"
             required
+            minLength={10}
+            maxLength={3000}
             rows="4"
-            placeholder="YOUR MESSAGE"
-            className="w-full bg-surface border border-gray-800 focus:border-accent outline-none text-white px-4 py-3 font-mono text-[11px] tracking-wider transition-colors resize-none"
+            placeholder="Tell me what you're building."
+            className="w-full bg-night/70 border border-steel/35 focus:border-signal outline-none text-mist px-4 py-3 font-sans text-base transition-colors resize-none"
           />
         </div>
         <button
           type="submit"
           disabled={status === "sending"}
-          className="w-full border border-accent bg-accent/10 text-accent font-mono text-[10px] tracking-[0.3em] uppercase py-4 font-bold active:bg-accent active:text-black transition-colors disabled:opacity-40 flex items-center justify-center gap-3"
+          className="w-full min-h-12 border border-signal bg-signal text-night font-mono text-[11px] tracking-[0.16em] py-4 font-bold disabled:opacity-40"
         >
-          {status === "sending" && "[ TRANSMITTING... ]"}
-          {status === "sent" && "[ ✓ MESSAGE DEPLOYED ]"}
-          {status === "error" && "[ ✗ TRANSMISSION FAILED ]"}
-          {status === "idle" && "DEPLOY_MESSAGE"}
+          {status === "sending" && "Sending..."}
+          {status === "sent" && "Message sent"}
+          {status === "error" && "Message failed"}
+          {status === "idle" && "Send message"}
         </button>
       </form>
     </section>
   );
 }
 
-/* ──────────────────── FOOTER ──────────────────── */
 function Footer() {
   return (
-    <div className="border-t border-gray-800 px-5 py-8 space-y-1 font-mono text-[9px] text-gray-700 tracking-[0.3em] uppercase">
-      <div>SYSTEM_TERMINATION</div>
-      <div>VP_2025</div>
-      <div>EOF_</div>
+    <div className="border-t border-steel/25 px-5 py-8 space-y-1 font-mono text-[10px] text-steel tracking-[0.14em]">
+      <div>Good software is reliable, intuitive, and built to last.</div>
+      <div>Vaibhav Patel</div>
     </div>
   );
 }
 
-/* ──────────────────── MAIN SHELL ──────────────────── */
 export default function MobilePortfolio() {
   const [booted, setBooted] = useState(false);
+  const [activeCaseStudy, setActiveCaseStudy] = useState(null);
 
   return (
-    <div className="fixed inset-0 z-50 bg-void text-white overflow-y-auto overflow-x-hidden">
+    <div className="fixed inset-0 z-50 bg-night text-mist overflow-y-auto overflow-x-hidden">
+      {activeCaseStudy === "autosecure" && (
+        <AutoSecureCaseStudy onClose={() => setActiveCaseStudy(null)} />
+      )}
       {!booted && <BootSequence onComplete={() => setBooted(true)} />}
       {booted && (
         <>
           <HUD />
           <HeroSection />
-          <SectionDivider label="SYSTEM_IDENTITY" />
+          <SectionDivider label="Identity" index={1} />
           <IdentitySection />
-          <SectionDivider label="FIELD_PROJECTS" />
-          <ProjectsSection />
-          <SectionDivider label="INITIATE_UPLINK" />
+          <SectionDivider label="Experience" index={2} />
+          <ExperienceSection />
+          <SectionDivider label="Projects" index={3} />
+          <ProjectsSection onOpenCaseStudy={setActiveCaseStudy} />
+          <SectionDivider label="Contact" index={4} />
           <ContactSection />
           <Footer />
         </>

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 /**
  * Shared contact form logic for both desktop and mobile surfaces.
- * Handles submission state, API call to web3forms, and auto-reset.
+ * Handles submission state, local contact API call, and auto-reset.
  *
  * @returns {{ status: string, handleSubmit: Function }}
  */
@@ -17,15 +17,14 @@ export default function useContactForm() {
 
     const form = e.target;
     const data = {
-      access_key: process.env.NEXT_PUBLIC_ACCESS_KEY,
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
-      subject: "Portfolio Contact — " + form.name.value,
+      website: form.website?.value || "",
     };
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
