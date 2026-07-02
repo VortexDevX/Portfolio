@@ -56,17 +56,16 @@ export const projects = [
     title: "LUXORA",
     frontendTexture: "/texture/luxora.webp",
     backendData: {
-      sys_arch: "Next.js 15 // Express 5 // Redux Toolkit",
-      db_matrix: "MongoDB // Mongoose // Cloudinary // Brevo",
-      deploy_node: "Node.js // Local_or_Server",
-      outcome: "MULTI_ROLE_COMMERCE_BACKEND",
+      sys_arch: "Express // Next.js // Redux Toolkit // TypeScript",
+      db_matrix: "MongoDB // Cloudinary // Brevo_SMTP",
+      deploy_node: "Local // Node_Server",
+      outcome: "FULL_STACK_PRODUCTION_READY_COMMERCE_PLATFORM",
       description:
-        "A multi-role commerce backend with authentication, product management, orders, and role-based permissions designed around scalable backend architecture.",
+        "Luxora is a full-stack e-commerce platform with distinct shopper, seller, and admin surfaces built on a shared Express + MongoDB backend. It handles catalog management, order workflows, promotions, sponsored listings, and transactional email via Brevo SMTP. Solves the multi-role commerce problem with clean domain separation and media-optimized delivery through Cloudinary.",
       features: [
-        "Role-separated APIs for shopper, seller, admin, and subadmin flows",
-        "JWT access/refresh authentication with protected admin operations",
-        "Order, return, coupon, media, and email-template service modules",
-        "Operational analytics for catalog, order, and user activity",
+        "Architected three separate role surfaces with scoped API domains and Redux Toolkit state slices per surface",
+        "Integrated Cloudinary media pipeline for product image upload, transformation, and CDN delivery",
+        "Built transactional and admin email system using Brevo SMTP with templated order and notification flows",
       ],
     },
     links: {

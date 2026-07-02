@@ -61,7 +61,8 @@ function ScreenshotSlide({ slide, index, total }) {
           {slide.status}
         </div>
         <div className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-steel">
-          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          {String(index + 1).padStart(2, "0")} /{" "}
+          {String(total).padStart(2, "0")}
         </div>
       </div>
 
@@ -140,7 +141,11 @@ function ScreenshotCarousel() {
 
   return (
     <section aria-label="AutoSecure screenshots" className="space-y-4">
-      <ScreenshotSlide slide={activeSlide} index={active} total={slides.length} />
+      <ScreenshotSlide
+        slide={activeSlide}
+        index={active}
+        total={slides.length}
+      />
 
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="flex gap-3">
@@ -213,7 +218,10 @@ function FeatureGroup({ group }) {
       </h3>
       <ul className="mt-5 space-y-4">
         {visibleItems.map((item) => (
-          <li key={item} className="flex gap-3 font-sans text-sm leading-6 text-[#303834]">
+          <li
+            key={item}
+            className="flex gap-3 font-sans text-sm leading-6 text-[#303834]"
+          >
             <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-ember" />
             <span>{item}</span>
           </li>
@@ -268,7 +276,10 @@ function StackSnapshot() {
   return (
     <div className="space-y-3">
       {groups.map((group) => (
-        <article key={group.title} className="border border-steel/25 bg-night/50 p-4">
+        <article
+          key={group.title}
+          className="border border-steel/25 bg-night/50 p-4"
+        >
           <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h3 className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-signal">
@@ -318,7 +329,10 @@ function ArchitectureMap() {
   return (
     <div className="grid gap-3 sm:grid-cols-2">
       {decisions.map((item) => (
-        <article key={item.title} className="border border-steel/25 bg-night/50 p-4">
+        <article
+          key={item.title}
+          className="border border-steel/25 bg-night/50 p-4"
+        >
           <h3 className="font-serif text-2xl leading-none text-mist">
             {item.title}
           </h3>
@@ -358,7 +372,10 @@ function WorkflowMap() {
   return (
     <div className="grid gap-5 lg:grid-cols-2">
       {flows.map((flow) => (
-        <article key={flow.title} className="border border-steel/30 bg-surface/45 p-5 md:p-6">
+        <article
+          key={flow.title}
+          className="border border-steel/30 bg-surface/45 p-5 md:p-6"
+        >
           <div className="flex items-center justify-between gap-4">
             <h3 className="font-serif text-3xl leading-none text-mist">
               {flow.title}
@@ -395,7 +412,9 @@ function ChallengeGrid() {
     <div className="grid gap-4 md:grid-cols-2">
       {visibleChallenges.map((challenge) => (
         <article key={challenge.title} className="atelier-soft-panel p-5">
-          <h3 className="font-serif text-2xl text-[#161A18]">{challenge.title}</h3>
+          <h3 className="font-serif text-2xl text-[#161A18]">
+            {challenge.title}
+          </h3>
           <p className="mt-3 font-sans text-sm leading-6 text-[#303834]">
             {challenge.body}
           </p>
@@ -498,7 +517,9 @@ export default function AutoSecureCaseStudy({ onClose }) {
               {caseStudy.summary}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <CaseStudyButton href={caseStudy.liveUrl}>Launch SaaS</CaseStudyButton>
+              <CaseStudyButton href={caseStudy.liveUrl}>
+                Launch SaaS
+              </CaseStudyButton>
               <CaseStudyButton variant="secondary">
                 {caseStudy.repositoryLabel}
               </CaseStudyButton>
@@ -531,7 +552,10 @@ export default function AutoSecureCaseStudy({ onClose }) {
         </section>
 
         <section className="mt-16">
-          <SectionHeader kicker="Capabilities" title="Built as SaaS, not a demo" />
+          <SectionHeader
+            kicker="Capabilities"
+            title="Built as SaaS, not a demo"
+          />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {caseStudy.featureGroups.map((group) => (
               <FeatureGroup key={group.title} group={group} />
@@ -541,7 +565,8 @@ export default function AutoSecureCaseStudy({ onClose }) {
 
         <section className="mt-16">
           <SectionHeader kicker="Architecture" title="System layout">
-            The product keeps tenant access, auth mode, file storage, and integrations separated so backend rules stay predictable.
+            The product keeps tenant access, auth mode, file storage, and
+            integrations separated so backend rules stay predictable.
           </SectionHeader>
 
           <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
@@ -563,20 +588,27 @@ export default function AutoSecureCaseStudy({ onClose }) {
 
         <section className="mt-16">
           <SectionHeader kicker="Backend" title="Authority lives server-side">
-            Routes, middleware, controllers, services, models, and presenters keep tenant checks, subscription gates, response shaping, and integration logic separated.
+            Routes, middleware, controllers, services, models, and presenters
+            keep tenant checks, subscription gates, response shaping, and
+            integration logic separated.
           </SectionHeader>
           <DetailGrid items={caseStudy.backendLayers} />
         </section>
 
         <section className="mt-16">
-          <SectionHeader kicker="Workflow" title="Two auth paths, one tenant model">
-            Browser sessions and Android WebView sessions use different auth paths because cookies plus CSRF and native Bearer tokens solve different runtime problems.
+          <SectionHeader
+            kicker="Workflow"
+            title="Two auth paths, one tenant model"
+          >
+            Browser sessions and Android WebView sessions use different auth
+            paths because cookies plus CSRF and native Bearer tokens solve
+            different runtime problems.
           </SectionHeader>
           <WorkflowMap />
         </section>
 
         <section className="mt-16">
-          <SectionHeader kicker="Subsystems" title="Storage, billing, backup, legal" />
+          <SectionHeader kicker="Subsystems" title="Storage, billing, backup" />
           <DetailGrid items={caseStudy.architectureNotes} />
         </section>
 
@@ -586,7 +618,10 @@ export default function AutoSecureCaseStudy({ onClose }) {
         </section>
 
         <section className="mt-16">
-          <SectionHeader kicker="Security" title="Privacy and platform guardrails" />
+          <SectionHeader
+            kicker="Security"
+            title="Privacy and platform guardrails"
+          />
           <SecurityDecisions />
         </section>
 
@@ -595,7 +630,10 @@ export default function AutoSecureCaseStudy({ onClose }) {
             <SectionHeader kicker="Learning" title="What this changed" />
             <ul className="space-y-4">
               {caseStudy.lessons.slice(0, 5).map((lesson) => (
-                <li key={lesson} className="flex gap-3 font-sans text-sm leading-6 text-ash">
+                <li
+                  key={lesson}
+                  className="flex gap-3 font-sans text-sm leading-6 text-ash"
+                >
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-signal" />
                   <span>{lesson}</span>
                 </li>
@@ -612,11 +650,14 @@ export default function AutoSecureCaseStudy({ onClose }) {
                 Live product, no source repository.
               </h2>
               <p className="mt-4 font-sans text-sm leading-6 text-ash">
-                AutoSecure is presented as a live SaaS case study. Public screenshots should use demo or sample data only.
+                AutoSecure is presented as a live SaaS case study. Public
+                screenshots should use demo or sample data only.
               </p>
             </div>
             <div className="mt-8">
-              <CaseStudyButton href={caseStudy.liveUrl}>Open AutoSecure</CaseStudyButton>
+              <CaseStudyButton href={caseStudy.liveUrl}>
+                Open AutoSecure
+              </CaseStudyButton>
             </div>
           </div>
         </section>

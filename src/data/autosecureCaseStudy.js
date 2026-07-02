@@ -8,7 +8,7 @@ export const autosecureCaseStudy = {
   summary:
     "A production-ready multi-tenant SaaS platform built for managing insurance policies and licenses across multiple organizations with secure document storage, subscription management, audit logs, reminders, and role-based access control.",
   productSurfaces: [
-    "Public website and legal pages",
+    "Public website for support, authentication, and legal documents",
     "Organization dashboard for agency owners, admins, and users",
     "Super-admin console for platform operators",
     "Android mobile app through Capacitor",
@@ -55,7 +55,7 @@ export const autosecureCaseStudy = {
     {
       title: "Super-admin console",
       caption:
-        "Organizations, diagnostics, plans, feature gates, backups, legal versions, and global platform settings.",
+        "Organizations, diagnostics, plans, feature gates, backups, and global platform settings.",
       src: "/texture/super-admin.webp",
       alt: "AutoSecure super-admin console",
       status: "Available",
@@ -70,28 +70,24 @@ export const autosecureCaseStudy = {
     },
   ],
   problem:
-    "Many insurance agencies still manage policies, license records, renewals, documents, payments, and team access through spreadsheets, folders, messaging apps, email threads, and manual notes. That makes records hard to search, renewal follow-ups easy to miss, documents hard to protect, identifiers dangerous to mutate, team access difficult to control, and SaaS-level needs like billing, quotas, backups, legal versioning, and mobile auth awkward to handle.",
+    "Many insurance agencies still manage policies, license records, renewals, documents, payments, and team access through spreadsheets, folders, messaging apps, email threads, and manual notes. That makes records hard to search, renewal follow-ups easy to miss, documents hard to protect, identifiers dangerous to mutate, team access difficult to control, and backups hard to handle.",
   solution:
-    "AutoSecure replaces scattered workflows with one centralized multi-tenant platform. Backend middleware and controllers enforce authentication, authorization, tenant isolation, feature access, subscription limits, quota rules, file access, and sensitive operations while the frontend adapts the interface to each user's role and organization access.",
+    "AutoSecure replaces scattered workflows with one centralized multi-tenant platform. Backend middleware and controllers enforce authentication, authorization, tenant isolation, feature access, file access, and sensitive operations while the frontend adapts the interface to each user's role and organization access.",
   featureGroups: [
     {
       title: "Insurance operations",
       items: [
-        "Policy creation wizard, listing, search, filters, detail views, editing, and deletion",
-        "Aadhaar, PAN, and other policy document uploads",
-        "Duplicate policy number checks within the same organization",
-        "License management behind organization feature access",
+        "Tenant-safe policy and license lifecycle with create, edit, filter, detail, and delete flows",
+        "Secure Aadhaar, PAN, policy, and license document uploads",
         "Renewal counters, calendar/event data, reminders, and notifications",
       ],
     },
     {
       title: "SaaS platform layer",
       items: [
-        "Multi-tenant organization workspaces",
-        "Role-based access for super admins, owners, admins, and users",
-        "Plans with monthly or annual billing",
-        "Per-period policy creation and upload storage quotas",
-        "Current-period add-ons, extra seats, direct quota grants, and optional seat renewal",
+        "Multi-tenant organization workspaces with role-based access",
+        "Plans with billing-period policy and upload quotas",
+        "Add-ons, extra seats, direct quota grants, and optional seat renewal",
       ],
     },
     {
@@ -99,19 +95,15 @@ export const autosecureCaseStudy = {
       items: [
         "Super-admin organization management and feature bypasses",
         "Backup create, list, download, restore, delete, and settings workflows",
-        "Legal document draft, publish, seed-current, and acceptance tracking",
         "Site branding, maintenance, security, email, integration, and support settings",
-        "Organization deletion request and cancellation workflow",
       ],
     },
     {
       title: "Security and privacy",
       items: [
-        "Tenant-scoped organization data access",
+        "Tenant-scoped organization data access with role and feature gates",
         "CSRF-protected browser requests and Bearer-token mobile requests",
-        "Stable storage_key document references for mutable policy numbers",
-        "Server-side Razorpay order payload verification",
-        "Audit logs for user, file, billing, backup, legal, and organization actions",
+        "Stable storage keys, server-side payment verification, and audit logs",
       ],
     },
   ],
@@ -161,7 +153,7 @@ export const autosecureCaseStudy = {
     "Express API under /api/v1",
     "MongoDB via Mongoose",
     "Cloudflare R2 for documents and backups",
-    "Resend, Razorpay, backup scheduler, and legal/versioning services",
+    "Resend, Razorpay and backup scheduler",
   ],
   backendLayers: [
     {
@@ -222,18 +214,14 @@ export const autosecureCaseStudy = {
       body: "Plans define seats, policy creation quota, upload quota, export access, analytics access, and audit-log access. Razorpay order IDs are bound to server-side purchase payloads before verification so the browser cannot change plan IDs, seat quantities, quota types, or pack counts during verification.",
     },
     {
-      title: "Backup and legal architecture",
-      body: "Backups snapshot selected MongoDB collections, gzip the JSON payload, and store it in R2 under a validated filename pattern. Legal documents are versioned records with draft, seed-current, publish, acceptance metrics, and dashboard consent enforcement.",
+      title: "Backup architecture",
+      body: "Backups are created on-demand or through a scheduler. Backup filenames are validated against the generated filename pattern before download, restore, or delete operations. Backups are stored in Cloudflare R2 and can be downloaded, restored, or deleted through the super-admin console.",
     },
   ],
   challenges: [
     {
       title: "Multi-tenant isolation",
       body: "Tenant-scoped resources include organizationId, and backend controllers/middleware enforce organization-aware queries. Frontend checks improve UX, but backend checks remain authoritative.",
-    },
-    {
-      title: "Secure PII handling",
-      body: "Selected sensitive fields are encrypted through model/service logic, masked for safer output where appropriate, and excluded from normal responses when exposure is not needed.",
     },
     {
       title: "Mutable policy numbers",
@@ -244,28 +232,8 @@ export const autosecureCaseStudy = {
       body: "Browser requests use cookies with CSRF protection, while mobile requests use Bearer tokens from the native bridge with a separate refresh path.",
     },
     {
-      title: "Multipart mobile uploads",
-      body: "Mobile keeps multipart policy/license uploads in the normal WebView handling path, while the native bridge handles tokens, file saving, sharing, and app events.",
-    },
-    {
-      title: "Billing and quota logic",
-      body: "Billing-period policy and upload quotas, current-period add-ons, extra seats, optional renewals, and super-admin direct quota grants make subscription behavior match real customer needs.",
-    },
-    {
-      title: "Payment verification safety",
-      body: "Server-side billing order tracking lets Razorpay verification consume known order payloads and reject mismatched client input.",
-    },
-    {
-      title: "Backup safety",
-      body: "Backup filenames are validated against the generated filename pattern before R2 download, restore, or delete operations.",
-    },
-    {
-      title: "Legal versioning",
-      body: "Legal pages use draft/publish workflows, seeded current drafts, acceptance metrics, and dashboard legal consent enforcement instead of static pages only.",
-    },
-    {
-      title: "Feature privacy",
-      body: "License and email features stay hidden for organizations without access, while backend feature gates still protect the routes.",
+      title: "Billing and payment safety",
+      body: "Policy/upload quotas, add-ons, seats, renewals, admin grants, and Razorpay verification are enforced through server-side billing state.",
     },
   ],
   securityDecisions: [
@@ -283,7 +251,7 @@ export const autosecureCaseStudy = {
     "Backup filenames are validated before download, restore, or delete.",
     "Razorpay verification uses server-side tracked orders.",
     "Feature gates protect license and email APIs.",
-    "Audit logs track important user, file, billing, backup, legal, and organization operations.",
+    "Audit logs track important user, file, billing, backup, and organization operations.",
   ],
   lessons: [
     "How to design a real multi-tenant SaaS beyond simple CRUD screens.",
@@ -291,7 +259,7 @@ export const autosecureCaseStudy = {
     "Why stable file keys matter when business identifiers can change.",
     "How to support browser and Android WebView authentication in one product.",
     "How to handle subscription behavior with seats, quotas, renewals, add-ons, and admin overrides.",
-    "How to build operational tools such as backups, diagnostics, legal publishing, and audit logs.",
+    "How to build operational tools such as backups, diagnostics, and audit logs.",
     "How to debug production-style attachment bugs from logs and storage lookup paths.",
     "How to hide exclusive features from unauthorized organizations while still enforcing backend gates.",
   ],

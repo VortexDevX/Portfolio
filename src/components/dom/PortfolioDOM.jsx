@@ -55,8 +55,8 @@ function HeroSection() {
         </div>
         <div className="col-span-12 lg:col-span-4 lg:pb-6">
           <p className="border-l border-steel/50 pl-6 font-sans text-lg leading-8 text-ash">
-            Building modern web applications with a focus on clean
-            architecture, thoughtful UI, and production-ready systems.
+            Building modern web applications with a focus on clean architecture,
+            thoughtful UI, and production-ready systems.
           </p>
           <div className="mt-8 flex gap-4 font-mono text-[11px] uppercase tracking-[0.18em] text-steel">
             <span>SaaS</span>
@@ -105,11 +105,11 @@ function AboutSection() {
           <div className="atelier-soft-panel p-7 md:p-9 shadow-[0_30px_90px_rgba(0,0,0,0.28)]">
             <p className="font-sans text-base md:text-lg leading-8">
               I'm a Computer Engineering student and Full-Stack Developer who
-              enjoys building products that solve real problems. Most of my
-              work revolves around scalable web applications, multi-tenant SaaS
+              enjoys building products that solve real problems. Most of my work
+              revolves around scalable web applications, multi-tenant SaaS
               platforms, secure authentication systems, and real-time features.
-              I like keeping projects clean, maintainable, and built for
-              growth instead of just getting them to work.
+              I like keeping projects clean, maintainable, and built for growth
+              instead of just getting them to work.
             </p>
           </div>
         </div>
@@ -433,10 +433,10 @@ function ContactSection() {
               Building something interesting?
             </div>
             <p className="mt-6 max-w-xl font-sans text-base md:text-lg text-ash leading-8">
-              Whether it's a full-stack application, an internal dashboard, or
-              a SaaS product, I enjoy building software that's reliable,
-              scalable, and pleasant to use. If you're working on something
-              interesting, I'd love to hear about it.
+              Whether it's a full-stack application, an internal dashboard, or a
+              SaaS product, I enjoy building software that's reliable, scalable,
+              and pleasant to use. If you're working on something interesting,
+              I'd love to hear about it.
             </p>
           </div>
 
@@ -463,7 +463,8 @@ function ContactSection() {
       </div>
 
       <div className="absolute bottom-12 font-mono text-[10px] text-steel tracking-[0.18em] uppercase">
-        Good software isn't just functional. It should be reliable, intuitive, and built to last.
+        Good software isn't just functional. It should be reliable, intuitive,
+        and built to last.
       </div>
     </section>
   );
