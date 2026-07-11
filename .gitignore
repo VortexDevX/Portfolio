@@ -9,6 +9,7 @@ logs/
 # Environment files
 .env
 .env.*
+!.env.example
 
 # Dependency directories
 node_modules/
@@ -38,7 +39,6 @@ out/
 coverage/
 
 # Package managers
-package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
@@ -52,4 +52,4 @@ venv/
 *.bak
 *.old
 
-docs/
+ALT-UI

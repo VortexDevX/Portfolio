@@ -1,22 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
+import Image from "next/image";
 import { useStore } from "../../store/useStore";
 import { projects } from "../../data/projects";
 import AutoSecureCaseStudy from "./AutoSecureCaseStudy";
+import useModalDialog from "../../hooks/useModalDialog";
 
 export default function ProjectModal() {
   const activeId    = useStore((state) => state.activeMonolithId);
   const setActiveId = useStore((state) => state.setActiveMonolithId);
 
-  useEffect(() => {
-    if (!activeId) return;
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") setActiveId(null);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeId, setActiveId]);
+  const closeModal = React.useCallback(() => setActiveId(null), [setActiveId]);
+  const dialogRef = useModalDialog(activeId ? closeModal : undefined);
 
   if (!activeId) return null;
 
@@ -24,7 +20,7 @@ export default function ProjectModal() {
   if (!project) return null;
 
   if (project.caseStudy === "autosecure") {
-    return <AutoSecureCaseStudy onClose={() => setActiveId(null)} />;
+    return <AutoSecureCaseStudy onClose={closeModal} />;
   }
 
   const hasLiveLink = project.links.live !== "NOT_DEPLOYED";
@@ -34,20 +30,22 @@ export default function ProjectModal() {
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
+      tabIndex={-1}
       aria-label={`Project details: ${project.title.replace(/_/g, " ")}`}
       className="fixed inset-0 z-[200] pointer-events-auto bg-[radial-gradient(circle_at_70%_20%,rgba(75,63,114,0.22),transparent_34%),linear-gradient(180deg,rgba(8,10,13,0.96),rgba(8,10,13,0.9))] animate-in fade-in duration-700 flex flex-col justify-between overflow-hidden text-mist"
     >
       <div
         className="absolute inset-0 z-0"
-        onClick={() => setActiveId(null)}
+        onClick={closeModal}
         aria-hidden="true"
       />
 
       <div className="w-full flex justify-between items-start border-b border-steel/20 p-6 md:p-8 z-10 bg-gradient-to-b from-night/95 to-night/60">
         <button
-          onClick={() => setActiveId(null)}
+          onClick={closeModal}
           aria-label="Close project view"
           className="font-mono text-steel hover:text-signal text-xs md:text-sm tracking-[0.18em] uppercase group flex items-center gap-5 font-bold transition-colors duration-200"
         >
@@ -75,9 +73,11 @@ export default function ProjectModal() {
                 </div>
               </div>
               <div className="relative h-[58vh] min-h-[360px] md:h-[66vh] xl:h-[calc(100vh-15.5rem)] xl:min-h-[520px]">
-                <img
+                <Image
                   src={project.frontendTexture}
                   alt={`${title} interface preview`}
+                  width={1600}
+                  height={900}
                   className="h-full w-full object-contain p-3 opacity-95 md:p-5"
                   draggable="false"
                 />

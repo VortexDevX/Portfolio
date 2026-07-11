@@ -15,11 +15,15 @@ export default function CustomCursor() {
   const isViewingInfo = activeId  !== null;
 
   useEffect(() => {
+    document.documentElement.classList.add("custom-cursor-ready");
     const onMouseMove = (e) => {
       position.current = { x: e.clientX, y: e.clientY };
     };
     window.addEventListener("mousemove", onMouseMove);
-    return () => window.removeEventListener("mousemove", onMouseMove);
+    return () => {
+      document.documentElement.classList.remove("custom-cursor-ready");
+      window.removeEventListener("mousemove", onMouseMove);
+    };
   }, []);
 
   // Drive position updates through rAF instead of React state.
@@ -39,6 +43,7 @@ export default function CustomCursor() {
   return (
     <div
       ref={wrapperRef}
+      aria-hidden="true"
       className="fixed top-0 left-0 pointer-events-none z-[9999]"
       style={{ willChange: "transform" }}
     >

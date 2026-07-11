@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
  * Shared contact form logic for both desktop and mobile surfaces.
@@ -10,6 +10,14 @@ import { useState } from "react";
  */
 export default function useContactForm() {
   const [status, setStatus] = useState("idle");
+  const resetTimer = useRef(null);
+
+  useEffect(() => () => clearTimeout(resetTimer.current), []);
+
+  const resetStatusLater = useCallback((delay) => {
+    clearTimeout(resetTimer.current);
+    resetTimer.current = setTimeout(() => setStatus("idle"), delay);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,14 +41,14 @@ export default function useContactForm() {
       if (res.ok) {
         setStatus("sent");
         form.reset();
-        setTimeout(() => setStatus("idle"), 4000);
+        resetStatusLater(4000);
       } else {
         setStatus("error");
-        setTimeout(() => setStatus("idle"), 3000);
+        resetStatusLater(3000);
       }
     } catch {
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
+      resetStatusLater(3000);
     }
   };
 

@@ -64,7 +64,7 @@ body,
 
 /* ── Custom cursor suppression (pointer devices only) ────────────────────── */
 @media (pointer: fine) {
-  * {
+  .custom-cursor-ready * {
     cursor: none !important;
   }
 }

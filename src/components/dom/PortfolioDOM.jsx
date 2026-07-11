@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
+import Image from "next/image";
 import { projects } from "../../data/projects";
 import { experiences } from "../../data/experience";
 import { useStore } from "../../store/useStore";
 import useContactForm from "../../hooks/useContactForm";
+import SocialLinks from "./SocialLinks";
 
 function useRevealOnScroll(ref, callback) {
   useEffect(() => {
@@ -177,9 +179,11 @@ function ProjectCard({ project, index, onOpen, onHover, featured = false }) {
       <div
         className={`relative overflow-hidden ${featured ? "aspect-[16/8.5]" : "aspect-[4/3]"}`}
       >
-        <img
+        <Image
           src={project.frontendTexture}
           alt={`${title} interface preview`}
+          width={1200}
+          height={675}
           loading="lazy"
           className="h-full w-full object-cover opacity-75 grayscale transition duration-500 group-hover:opacity-95 group-hover:grayscale-0"
         />
@@ -378,11 +382,12 @@ function ContactForm() {
         ["email", "Email", "your@email.com", "email"],
       ].map(([name, label, placeholder, type]) => (
         <div key={name} className="flex flex-col gap-2">
-          <label className="font-mono text-[11px] uppercase tracking-[0.16em] text-steel">
+          <label htmlFor={`desktop-${name}`} className="font-mono text-[11px] uppercase tracking-[0.16em] text-steel">
             {label}
           </label>
           <input
             type={type}
+            id={`desktop-${name}`}
             name={name}
             required
             maxLength={name === "email" ? 120 : 80}
@@ -392,11 +397,12 @@ function ContactForm() {
         </div>
       ))}
       <div className="flex flex-col gap-2">
-        <label className="font-mono text-[11px] uppercase tracking-[0.16em] text-steel">
+        <label htmlFor="desktop-message" className="font-mono text-[11px] uppercase tracking-[0.16em] text-steel">
           Message
         </label>
         <textarea
           name="message"
+          id="desktop-message"
           required
           minLength={10}
           maxLength={3000}
@@ -440,24 +446,10 @@ function ContactSection() {
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-3 gap-3 font-mono tracking-[0.12em] text-[10px] font-bold uppercase max-w-md">
-            {[
-              ["LinkedIn", "https://linkedin.com/in/vaibhavpatel-dev/"],
-              ["GitHub", "https://github.com/VortexDevX"],
-              ["Resume", "/resume.pdf"],
-            ].map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                target={label === "Resume" ? undefined : "_blank"}
-                rel={label === "Resume" ? undefined : "noreferrer"}
-                download={label === "Resume" ? true : undefined}
-                className="border border-steel/35 bg-surface/70 px-4 py-4 text-center text-ash hover:border-signal hover:text-signal transition-colors"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
+          <SocialLinks
+            className="mt-10 grid max-w-md grid-cols-3 gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em]"
+            linkClassName="border border-steel/35 bg-surface/70 px-4 py-4 text-center text-ash hover:border-signal hover:text-signal transition-colors"
+          />
         </div>
         <ContactForm />
       </div>

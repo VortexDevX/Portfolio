@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { projects } from "../../data/projects";
 import { experiences } from "../../data/experience";
 import useContactForm from "../../hooks/useContactForm";
 import AutoSecureCaseStudy from "../dom/AutoSecureCaseStudy";
+import SocialLinks from "../dom/SocialLinks";
 
 const BOOT_LINES = [
   "Loading systems",
@@ -217,9 +219,11 @@ function ProjectCard({ project, index, onOpenCaseStudy }) {
   return (
     <article className={`mx-5 mb-7 overflow-hidden ${isCaseStudy ? "border border-signal/45 bg-signal/10" : "atelier-panel"}`}>
       <div className="relative w-full aspect-[4/3] bg-night overflow-hidden">
-        <img
+        <Image
           src={project.frontendTexture}
           alt={project.title.replace(/_/g, " ")}
+          width={900}
+          height={675}
           className="w-full h-full object-cover opacity-80 grayscale transition-all duration-500"
           loading="lazy"
         />
@@ -378,24 +382,10 @@ function ContactSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mb-6">
-        {[
-          ["LinkedIn", "https://linkedin.com/in/vaibhavpatel-dev/"],
-          ["GitHub", "https://github.com/VortexDevX"],
-          ["Resume", "/resume.pdf"],
-        ].map(([label, href]) => (
-          <a
-            key={label}
-            href={href}
-            target={label === "Resume" ? undefined : "_blank"}
-            rel={label === "Resume" ? undefined : "noreferrer"}
-            download={label === "Resume" ? true : undefined}
-            className="border border-steel/35 bg-surface/70 text-ash font-mono text-[10px] tracking-[0.12em] py-4 text-center hover:border-signal hover:text-signal transition-colors"
-          >
-            {label}
-          </a>
-        ))}
-      </div>
+      <SocialLinks
+        className="mb-6 grid grid-cols-3 gap-3"
+        linkClassName="border border-steel/35 bg-surface/70 text-ash font-mono text-[10px] tracking-[0.12em] py-4 text-center hover:border-signal hover:text-signal transition-colors"
+      />
 
       <form onSubmit={handleSubmit} className="atelier-panel p-5 space-y-5">
         <input
@@ -410,11 +400,12 @@ function ContactSection() {
           ["email", "Email", "your@email.com", "email"],
         ].map(([name, label, placeholder, type]) => (
           <div key={name} className="space-y-2">
-            <label className="font-mono text-steel text-[11px] tracking-[0.16em]">
+            <label htmlFor={`mobile-${name}`} className="font-mono text-steel text-[11px] tracking-[0.16em]">
               {label}
             </label>
             <input
               type={type}
+              id={`mobile-${name}`}
               name={name}
               required
               maxLength={name === "email" ? 120 : 80}
@@ -424,11 +415,12 @@ function ContactSection() {
           </div>
         ))}
         <div className="space-y-2">
-          <label className="font-mono text-steel text-[11px] tracking-[0.16em]">
+          <label htmlFor="mobile-message" className="font-mono text-steel text-[11px] tracking-[0.16em]">
             Message
           </label>
           <textarea
             name="message"
+            id="mobile-message"
             required
             minLength={10}
             maxLength={3000}

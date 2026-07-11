@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { autosecureCaseStudy as caseStudy } from "../../data/autosecureCaseStudy";
+import useModalDialog from "../../hooks/useModalDialog";
 
 function CaseStudyButton({ href, children, variant = "primary" }) {
   const className =
@@ -73,16 +75,20 @@ function ScreenshotSlide({ slide, index, total }) {
       >
         {slide.src ? (
           <>
-            <img
+            <Image
               src={slide.src}
               alt=""
               aria-hidden="true"
+              width={1600}
+              height={900}
               className="absolute inset-0 h-full w-full scale-110 object-cover opacity-15 blur-xl"
               draggable="false"
             />
-            <img
+            <Image
               src={slide.src}
               alt={slide.alt}
+              width={1600}
+              height={900}
               className={`relative z-10 object-contain shadow-[0_28px_100px_rgba(0,0,0,0.45)] ${
                 isPortrait
                   ? "max-h-[76vh] max-w-[19rem] md:max-w-[23rem]"
@@ -125,9 +131,14 @@ function ScreenshotCarousel() {
   const slides = caseStudy.media;
 
   const activeSlide = slides[active];
-  const nextSlide = () => setActive((value) => (value + 1) % slides.length);
-  const prevSlide = () =>
-    setActive((value) => (value - 1 + slides.length) % slides.length);
+  const nextSlide = useCallback(
+    () => setActive((value) => (value + 1) % slides.length),
+    [slides.length],
+  );
+  const prevSlide = useCallback(
+    () => setActive((value) => (value - 1 + slides.length) % slides.length),
+    [slides.length],
+  );
 
   useEffect(() => {
     const onKeyDown = (event) => {
@@ -137,7 +148,7 @@ function ScreenshotCarousel() {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [nextSlide, prevSlide]);
 
   return (
     <section aria-label="AutoSecure screenshots" className="space-y-4">
@@ -463,20 +474,15 @@ export default function AutoSecureCaseStudy({ onClose }) {
     [],
   );
 
-  useEffect(() => {
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") onClose?.();
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  const dialogRef = useModalDialog(onClose);
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label="AutoSecure case study"
+      tabIndex={-1}
       className="fixed inset-0 z-[220] overflow-y-auto overflow-x-hidden bg-night text-mist"
     >
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(75,63,114,0.2),transparent_32%),linear-gradient(180deg,rgba(8,10,13,0),#080A0D_72%)]" />
