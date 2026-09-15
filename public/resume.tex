@@ -1,0 +1,144 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{charter}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Generous margins for readability
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{6pt}
+
+% Section formatting: subtle rule, more space
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large}{}{0em}{}[\color{black}\titlerule\vspace{4pt}]
+
+% Itemize with generous spacing
+\newcommand{\resumeItem}[1]{\item \small{#1}}
+\newcommand{\resumeListStart}{\begin{itemize}[leftmargin=0.18in, itemsep=2pt, topsep=4pt]}
+\newcommand{\resumeListEnd}{\end{itemize}\vspace{6pt}}
+
+% Custom command for project subtitle (tech stack)
+\newcommand{\projectTech}[1]{{\small\textit{#1}}}
+
+\begin{document}
+
+% HEADER — centered, bold, clean
+\begin{center}
+    {\LARGE \textbf{PATEL VAIBHAV H.}} \\[6pt]
+    \small
+    \href{mailto:patelvaibhav02406@gmail.com}{patelvaibhav02406@gmail.com}
+    \,|\,
+    +91 83477 01320
+    \,|\,
+    \href{https://linkedin.com/in/vaibhavpatel-dev/}{linkedin.com/in/vaibhavpatel-dev/}
+    \,|\,
+    \href{https://github.com/VortexDevX}{github.com/VortexDevX}
+\end{center}
+
+\vspace{8pt}
+
+% SUMMARY — punchy, clear value proposition
+\section{SUMMARY}
+Full-Stack Developer and Computer Engineering student with experience developing production-ready web applications, multi-tenant SaaS platforms, and real-time systems. Skilled in React, Next.js, Node.js, Express.js, MongoDB, PostgreSQL, TypeScript, REST APIs, authentication, RBAC, and cloud deployment. Experienced in building secure, scalable applications from frontend development to backend architecture and deployment.
+
+\vspace{4pt}
+
+% SKILLS — organized, scannable
+\section{SKILLS}
+\small
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Languages}       & JavaScript, TypeScript, Python, HTML5, CSS3 \\
+\textbf{Frontend}        & React, Next.js, Tailwind CSS, Redux Toolkit, Zustand, Three.js, GSAP \\
+\textbf{Backend}         & Node.js, Express.js, Fastify, FastAPI, REST APIs, WebSockets, Socket.IO \\
+\textbf{Databases}       & MongoDB, PostgreSQL, Prisma ORM, SQLite, IndexedDB \\
+\textbf{Security/Auth}   & JWT, OAuth2, Role-Based Access Control (RBAC), TOTP (2FA), Helmet, Rate Limiting \\
+\textbf{Cloud \& DevOps}  & Docker, GitHub Actions, AWS S3, Cloudinary, Firebase, Vercel, CI/CD \\
+\textbf{Tools}           & Git, GitHub, Postman, Playwright, Vitest \\
+\end{tabularx}
+
+\vspace{8pt}
+
+\section{EXPERIENCE}
+
+\textbf{Web Development Intern} \hfill June 2026 \\
+InAmigos Foundation
+\resumeListStart
+\resumeItem{Built responsive web pages and interactive frontend applications using HTML, CSS, React, Next.js, and Tailwind CSS.}
+\resumeItem{Performed a website audit covering responsiveness, SEO, accessibility, and user experience, providing recommendations for improving the organization's website.}
+\resumeItem{Designed UI concepts in Figma and developed \textbf{ImpactPulse}, a dashboard for visualizing NGO impact metrics using React and Recharts.}
+\resumeListEnd
+
+% PROJECTS — spacious, descriptive, tech clearly labeled
+\section{PROJECTS}
+
+\textbf{AutoSecure — Enterprise Security \& Admin Platform} \hfill \href{https://autosecure.vxdev.in}{Live} \\
+\projectTech{Next.js 15, React 19, TypeScript, Express, MongoDB, AWS S3, Recharts}
+\resumeListStart
+\resumeItem{Architected a production multi-tenant SaaS platform for insurance agencies to manage policy lifecycles, driving licenses, and client KYC compliance records.}
+\resumeItem{Engineered tenant-isolated data models in MongoDB, secured RESTful APIs in Express/TypeScript, and integrated JWT authentication with Role-Based Access Control (RBAC).}
+\resumeItem{Automated policy renewal notifications and quota tracking across organizations, eliminating manual spreadsheet overhead while ensuring regulatory compliance and auditability.}
+\resumeListEnd
+
+\textbf{ChronicleX — Self-Hosted Media Tracker \& Android App} \hfill \href{https://github.com/VortexDevX/Chronicle}{GitHub} \,|\, \href{https://chroniclex.vercel.app/}{Live} \\
+\projectTech{Next.js 16, React 19, TypeScript, Zustand, MongoDB, Cheerio, SIMKL API, Firebase FCM, Android}
+\resumeListStart
+\resumeItem{Engineered a self-hosted media tracking ecosystem and Android companion app to organize, monitor, and synchronize multi-format content across web and mobile.}
+\resumeItem{Built serverless REST API pipelines in Next.js 16 and MongoDB with Cheerio web scrapers, SIMKL calendar sync, Vercel cron background jobs, and a hardened native Android shell.}
+\resumeItem{Automated release detection with live countdowns and sub-second push alerts via Firebase Cloud Messaging (FCM) and Telegram, ensuring offline resilience and data integrity.}
+\resumeListEnd
+
+\newpage
+\textbf{ShadowCore — Real-Time Discord Dashboard \& Bot Manager} \hfill \href{https://github.com/VortexDevX/ShadowCore}{GitHub} \\
+\projectTech{Node.js, Express, Socket.io, Discord.js, Passport OAuth2, MongoDB}
+\resumeListStart
+\resumeItem{Developed an event-driven server operations platform and bot controller to manage high-volume Discord communities, automated moderation, and live activity tracking.}
+\resumeItem{Co-located Express REST APIs and Discord.js v14 in a single runtime, streaming real-time metrics via full-duplex WebSockets (Socket.IO) and authenticating sessions via Discord OAuth2.}
+\resumeItem{Eliminated inter-process communication latency for zero-delay bot administration, delivering instantaneous audit logging and role-synchronization across administrative surfaces.}
+\resumeListEnd
+
+\textbf{Luxora — Premium Full-Stack E-Commerce Platform} \hfill \href{https://github.com/VortexDevX/E-Commerce}{GitHub} \\
+\projectTech{Next.js, Redux Toolkit, Node.js, Express, MongoDB, Cloudinary}
+\resumeListStart
+\resumeItem{Designed a scalable multi-role e-commerce web application featuring domain-isolated boundaries and role-scoped permissions for shoppers, vendors, and platform admins.}
+\resumeItem{Constructed modular RESTful API endpoints in Express/MongoDB, managed granular client state slices with Redux Toolkit, and streamed media to Cloudinary CDN via Multer buffers.}
+\resumeItem{Decoupled vendor catalog operations from shopper checkout funnels, optimizing media asset delivery latency and automating transactional order confirmation emails.}
+\resumeListEnd
+
+\textbf{Portfolio — Interactive 3D WebGL Terminal Experience} \hfill \href{https://github.com/VortexDevX/Portfolio}{GitHub} \,|\, \href{https://vxdev.in/}{Live} \\
+\projectTech{Next.js, Three.js, React Three Fiber, GSAP, Zustand, Lenis}
+\resumeListStart
+\resumeItem{Built a high-performance interactive 3D portfolio featuring a virtual retro terminal, spatial navigation, and dynamic project case studies rendered in real time.}
+\resumeItem{Engineered 3D scene graphs using Three.js and React Three Fiber, synchronized WebGL canvas state with DOM modals via Zustand, and driven by GSAP timelines and Lenis physics.}
+\resumeItem{Achieved 60 FPS GPU-accelerated rendering through geometry instancing and asset optimization, maintaining full responsiveness and accessible mobile fallback controls.}
+\resumeListEnd
+
+% EDUCATION — simple and clean
+\section{EDUCATION}
+\textbf{Bachelor of Engineering (Computer Engineering)} \hfill Expected 2027 \\
+Ahmedabad Institute of Technology, Ahmedabad
+
+\vspace{6pt}
+
+% CERTIFICATIONS — with live link to certificate
+\section{CERTIFICATIONS}
+\textbf{AIT Hackathon — 1st Place} \hfill 2025 \\
+Built a Secure WiFi Gateway using Python and Raspberry Pi with captive-portal authentication and admin dashboard. \\
+\small\textit{Certificate:} \href{https://drive.google.com/file/d/1_bStpQGr8wgqULJqMCemGi_-0lOgMKXD/view?usp=sharing}{View Certificate}
+
+\end{document}

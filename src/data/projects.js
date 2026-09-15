@@ -78,17 +78,17 @@ export const projects = [
     title: "CHRONICLE",
     frontendTexture: "/texture/chronicle.webp",
     backendData: {
-      sys_arch: "Next.js 14 // React 18 // Zustand",
-      db_matrix: "MongoDB // AniList // Jikan // MangaDex",
-      deploy_node: "Vercel // Serverless_API",
-      outcome: "SELF_HOSTED_MEDIA_DATA_SYSTEM",
+      sys_arch: "Next.js 16 // React 19 // Zustand // TypeScript",
+      db_matrix: "MongoDB // Cheerio // SIMKL // Firebase_FCM",
+      deploy_node: "Vercel // Serverless_API // Android_APK",
+      outcome: "CROSS_PLATFORM_MEDIA_TRACKER_AND_RADAR",
       description:
-        "A self-hosted media tracking platform for organizing anime, manga, manhwa, novels, and more with progress tracking, ratings, custom collections, and a clean reading experience.",
+        "A sleek, self-hosted media tracking platform and native Android companion app for Anime, Manhwa, Donghua, and Light Novels. Features automated chapter & episode tracking via Cheerio scraping, SIMKL release schedules with live countdowns, 3D curated shelves, multi-channel push alerts (Firebase FCM & Telegram), and an offline-ready Android APK shell.",
       features: [
-        "Metadata ingestion with AniList primary lookup and Jikan/MangaDex fallbacks",
-        "Image proxy and cover caching for stable external media rendering",
-        "JSON import/export path for portable self-hosted data",
-        "Indexed library views for progress, status, stale entries, and revisit queues",
+        "Automated chapter & episode tracking via Cheerio scraping, SIMKL calendar sync, and Vercel cron jobs",
+        "Release Radar with live air-date countdowns and AniList ID-backed schedule synchronization",
+        "Multi-channel push notification pipeline dispatching alerts via Firebase Cloud Messaging and Telegram",
+        "Native Android companion app (Kotlin/WebView shell) with persistent auth, offline handling, and FCM alerts",
       ],
     },
     links: {
