@@ -1,25 +1,25 @@
 import "./globals.css";
-import { EB_Garamond, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
-const body = IBM_Plex_Sans({
-  subsets: ["latin"],
+const body = localFont({
+  src: "./fonts/IBMPlexSans-Variable.woff2",
   display: "swap",
   variable: "--font-body",
-  weight: ["400", "500", "600", "700"],
+  weight: "100 700",
 });
 
-const display = EB_Garamond({
-  subsets: ["latin"],
+const display = localFont({
+  src: "./fonts/EBGaramond-Variable.woff2",
   display: "swap",
   variable: "--font-display",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "400 800",
 });
 
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
+const mono = localFont({
+  src: "./fonts/JetBrainsMono-Variable.woff2",
   display: "swap",
   variable: "--font-space-mono",
-  weight: ["400", "500", "700"],
+  weight: "100 800",
 });
 
 export const metadata = {

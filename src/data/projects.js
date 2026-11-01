@@ -78,17 +78,17 @@ export const projects = [
     title: "CHRONICLE",
     frontendTexture: "/texture/chronicle.webp",
     backendData: {
-      sys_arch: "Next.js 16 // React 19 // Zustand // TypeScript",
-      db_matrix: "MongoDB // Cheerio // SIMKL // Firebase_FCM",
-      deploy_node: "Vercel // Serverless_API // Android_APK",
-      outcome: "CROSS_PLATFORM_MEDIA_TRACKER_AND_RADAR",
+      sys_arch: "Next.js 16 // React 19 // Zustand // TypeScript // Kotlin",
+      db_matrix: "MongoDB // Cheerio // AniList // MangaDex",
+      deploy_node: "Vercel // cron-job.org // Firebase_FCM",
+      outcome: "CROSS_PLATFORM_MEDIA_LIBRARY_AND_UPDATE_TRACKER",
       description:
-        "A sleek, self-hosted media tracking platform and native Android companion app for Anime, Manhwa, Donghua, and Light Novels. Features automated chapter & episode tracking via Cheerio scraping, SIMKL release schedules with live countdowns, 3D curated shelves, multi-channel push alerts (Firebase FCM & Telegram), and an offline-ready Android APK shell.",
+        "A self-hosted media library and update tracker for Anime, Manhwa, Donghua, and Light Novels, delivered as a responsive Next.js app and Kotlin Android companion. Chronicle combines manual progress logging with scheduled source scraping, an exact-delta updates inbox, analytics, curated 3D shelves, discovery, backup tools, and delivery-aware FCM and Telegram notifications.",
       features: [
-        "Automated chapter & episode tracking via Cheerio scraping, SIMKL calendar sync, and Vercel cron jobs",
-        "Release Radar with live air-date countdowns and AniList ID-backed schedule synchronization",
-        "Multi-channel push notification pipeline dispatching alerts via Firebase Cloud Messaging and Telegram",
-        "Native Android companion app (Kotlin/WebView shell) with persistent auth, offline handling, and FCM alerts",
+        "Built a command-center library with quick progress logging, ratings, notes, bulk actions, 3D shelves, analytics, and JSON import/export",
+        "Engineered bounded cron checks for Manhwa and Donghua using direct Cheerio scraping, proxy fallback, safe work rotation, and retry controls",
+        "Preserved user-owned progress and fractional chapters while surfacing exact unread deltas, tracker diagnostics, and delivery state in a dedicated updates inbox",
+        "Shipped a Kotlin/WebView Android companion with persistent authentication, native offline handling, and Firebase push alerts alongside Telegram delivery",
       ],
     },
     links: {
